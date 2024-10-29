@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style-tela.css" />
+    <title>Pets</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Menu lateral -->
+      <aside class="sidebar">
+        <h2>Hotel Pet</h2>
+        <nav>
+          <ul>
+            <li class="active"><a href="#">Pets</a></li>
+            <li><a href="#">Usuários</a></li>
+            <li><a href="#">Configurações</a></li>
+            <li><a href="#">Reservas</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Conteúdo principal -->
+      <main class="main-content">
+        <!-- Cabeçalho -->
+        <header class="header">
+          <div class="breadcrumb">Home / Pets</div>
+          <div class="user-info">
+            <span>Fulano</span>
+            <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Ícone de usuário" />
+          </div>
+        </header>
+
+        <!-- Formulário e Tabela -->
+        <section class="pets-section">
+          <h2>Pets</h2>
+          <button class="btn new-pet">+ Novo Pet</button>
+
+          <!-- Formulário de pesquisa -->
+          <div class="div">
+            <div class="form-container">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="id">Id</label>
+                  <input type="text" id="id" name="id" />
+                </div>
+                <div class="form-group">
+                  <label for="raca">Raça</label>
+                  <input type="text" id="raca" name="raca" />
+                </div>
+                <div class="form-group">
+                  <label for="nome">Nome</label>
+                  <input type="text" id="nome" name="nome" />
+                </div>
+                <div class="form-group">
+                  <label for="tamanho">Tamanho</label>
+                  <input type="text" id="tamanho" name="tamanho" />
+                </div>
+              </div>
+            </div>
+            <div class="form-buttons">
+              <button class="btn search">Pesquisar</button>
+              <button class="btn clear">Limpar</button>
+            </div>
+          </div>
+
+          <!-- Tabela de resultados -->
+          <table class="pets-table">
+            <thead>
+              <tr class="menu">
+                <th></th>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Raça</th>
+                <th>Tamanho</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>12349984501</td>
+                <td>Max</td>
+                <td>Cachorro</td>
+                <td>Pastor Alemão</td>
+                <td>Grande</td>
+                <td><a href="#">Editar</a> | <a href="#">Visualizar</a></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>12349984502</td>
+                <td>Ginger</td>
+                <td>Gato</td>
+                <td>Não definida</td>
+                <td>Pequeno</td>
+                <td><a href="#">Editar</a> | <a href="#">Visualizar</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

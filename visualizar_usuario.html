@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style-tela.css" />
-    <title>Ver Reserva</title>
+    <title>Ver Usuário</title>
   </head>
   <body>
     <div class="container">
@@ -13,10 +13,10 @@
         <h2>Hotel Pet</h2>
         <nav>
           <ul>
-            <li><a href="pets.html">Pets</a></li>
+            <li class="active"><a href="pets.html">Pets</a></li>
             <li><a href="usuarios.html">Usuários</a></li>
             <li><a href="configuracoes.html">Configurações</a></li>
-            <li class="active"><a href="reservas.html">Reservas</a></li>
+            <li><a href="reservas.html">Reservas</a></li>
           </ul>
         </nav>
       </aside>
@@ -25,7 +25,7 @@
       <main class="main-content">
         <!-- Cabeçalho -->
         <header class="header">
-          <div class="breadcrumb">Home / Reservas / Ver Reserva</div>
+          <div class="breadcrumb">Home / Usuários / Ver Usuário</div>
           <div class="user-info">
             <span>João da Silva</span>
             <img
@@ -37,30 +37,26 @@
 
         <!-- Seção de visualização do pet -->
         <section class="view-pet-section">
-          <h2>Ver Reserva</h2>
+          <h2>Ver Usuário</h2>
           <div class="botaoEV">
-            <button class="btn edit" onclick="window.location.href='editar_reserva.html'">✎ Editar</button>
+            <button class="btn edit" onclick="window.location.href='editar_usuario.html'">✎ Editar</button>
             <button class="btn delete">🗑️ Deletar</button>
           </div>
 
           <div class="pet-details">
             <p><strong>Id:</strong> 1234509876</p>
-            <p><strong>Proprietário:</strong> José da Silva</p>
-            <p><strong>Pet:</strong> Max</p>
-            <p><strong>Chegada:</strong> 02/05/2021</p>
-            <p><strong>Partida:</strong> 07/05/2021</p>
-            <p><strong>Notas:</strong> Lorem ipsum ...</p>
-            <p><strong>Anotações dos Funcionários::</strong> Lorem ipsum ...</p>
+            <p><strong>Email:</strong> joaodasilva@pet.com</p>
+            <p><strong>Nome:</strong> José</p>
+            <p><strong>Sobrenome:</strong> da Silva</p>
+            <p><strong>Telefone:</strong> 123456789</p>
+            <p><strong>Função:</strong> Clente</p>
+            <p><strong>Status:</strong> Ativo</p>
+            <p><strong>Criado em:</strong> 19/02/2020</p>
             <p><strong>Imagem:</strong></p>
             <div class="image-placeholder"></div>
-            <p><strong>Status:</strong> Finalizado</p>
-            <p><strong>Total das diárias:</strong> R$ 40,00</p>
-            <p><strong>Recibo:</strong> recibo.pdf</p>
-            <p><strong>Criado em:</strong> 02/05/2021</p>
-            <p><strong>Atualizado em:</strong> 07/05/2021</p>
           </div>
 
-          <button class="btn back" onclick="window.location.href='reservas.html'">
+          <button class="btn back" onclick="window.location.href='usuarios.html'">
             ← Voltar
           </button>
         </section>

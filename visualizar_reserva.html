@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style-tela.css" />
+    <title>Ver Reserva</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Menu lateral -->
+      <aside class="sidebar">
+        <h2>Hotel Pet</h2>
+        <nav>
+          <ul>
+            <li><a href="pets.html">Pets</a></li>
+            <li><a href="usuarios.html">Usuários</a></li>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="reservas.html">Reservas</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Conteúdo principal -->
+      <main class="main-content">
+        <!-- Cabeçalho -->
+        <header class="header">
+          <div class="breadcrumb">Home / Reservas / Ver Reserva</div>
+          <div class="user-info">
+            <span>João da Silva</span>
+            <img
+              src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
+              alt="Ícone de usuário"
+            />
+          </div>
+        </header>
+
+        <!-- Seção de visualização do pet -->
+        <section class="view-pet-section">
+          <h2>Ver Reserva</h2>
+
+          <div class="pet-details">
+            <p><strong>Id:</strong> 1234509876</p>
+            <p><strong>Proprietário:</strong> José da Silva</p>
+            <p><strong>Pet:</strong> Max</p>
+            <p><strong>Chegada:</strong> 02/05/2021</p>
+            <p><strong>Partida:</strong> 07/05/2021</p>
+            <p><strong>Notas:</strong> Lorem ipsum ...</p>
+            <p><strong>Anotações dos Funcionários::</strong> Lorem ipsum ...</p>
+            <p><strong>Imagem:</strong></p>
+            <div class="image-placeholder"></div>
+            <p><strong>Status:</strong> Finalizado</p>
+            <p><strong>Total das diárias:</strong> R$ 40,00</p>
+            <p><strong>Recibo:</strong> recibo.pdf</p>
+            <p><strong>Criado em:</strong> 02/05/2021</p>
+            <p><strong>Atualizado em:</strong> 07/05/2021</p>
+          </div>
+
+          <button class="btn back" onclick="window.location.href='reservas.html'">
+            ← Voltar
+          </button>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

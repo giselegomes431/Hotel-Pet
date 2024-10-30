@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style-editar.css" />
-    <title>Cadastrar Pet</title>
+    <title>ECadastrar Usuário</title>
   </head>
   <body>
     <div class="container">
@@ -25,7 +25,7 @@
       <main class="main-content">
         <!-- Cabeçalho -->
         <header class="header">
-          <div class="breadcrumb">Home / Pet / Cadastrar Pet</div>
+          <div class="breadcrumb">Home / Usuários / Cadastrar Usuário</div>
           <div class="user-info">
             <span>João da Silva</span>
             <img
@@ -37,38 +37,35 @@
 
         <!-- Seção de edição do pet -->
         <section class="view-pet-section">
-          <h2>Cadastrar Pet</h2>
+          <h2>Cadastrar Usuário</h2>
           <div class="form-grid">
             <div class="form-fields">
               <div class="form-group">
-                <label for="proprietario">Proprietário: *</label>
-                <input type="text" id="proprietario" name="proprietario" required />
+                <label for="email">Email: *</label>
+                <input type="text" id="email" name="email" required />
               </div>
               <div class="form-group">
                 <label for="nome">Nome: *</label>
                 <input type="text" id="nome" name="nome" required />
               </div>
-              <div class="form-group">
-                <label for="tipo">Tipo: *</label>
-                <select id="tipo" name="tipo" required>
-                  <option value="cachorro">Cachorro</option>
-                  <option value="gato">Gato</option>
-                  <option value="outro">Outro</option>
+                <div class="form-group">
+                    <label for="sobrenome">Sobrenome: *</label>
+                    <input type="text" id="sobrenome" name="sobrenome" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="telefone">Telefone: *</label>
+                    <input type="number" id="telefone" name="telefone" required />
+                  </div>
+                  <div class="form-group">
+                <label for="funcao">Função:</label>
+                <select id="funcao" name="funcao">
+                  <option value="">Selecione</option>
+                  <option value="gerente">Gerente</option>
+                  <option value="funcionario">Funcionário</option>
+                  <option value="cliente">Cliente</option>
                 </select>
+                  </div>
               </div>
-              <div class="form-group">
-                <label for="raca">Raça: *</label>
-                <input type="text" id="raca" name="raca" required />
-              </div>
-              <div class="form-group">
-                <label for="tamanho">Tamanho: *</label>
-                <select id="tamanho" name="tamanho" required>
-                  <option value="pequeno">Pequeno</option>
-                  <option value="medio">Médio</option>
-                  <option value="grande">Grande</option>
-                </select>
-              </div>
-            </div>
             <div class="image-upload">
               <label for="imagem">Imagem:</label>
               <div class="image-placeholder">

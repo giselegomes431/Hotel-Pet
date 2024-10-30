@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style-tela.css" />
+    <title>Ver Pet</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Menu lateral -->
+      <aside class="sidebar">
+        <h2>Hotel Pet</h2>
+        <nav>
+          <ul>
+            <li><a href="pets.html">Pets</a></li>
+            <li><a href="#">Usuários</a></li>
+            <li><a href="#">Configurações</a></li>
+            <li><a href="#">Reservas</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Conteúdo principal -->
+      <main class="main-content">
+        <!-- Cabeçalho -->
+        <header class="header">
+          <div class="breadcrumb">Home / Pets / Ver Pet</div>
+          <div class="user-info">
+            <span>João da Silva</span>
+            <img
+              src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
+              alt="Ícone de usuário"
+            />
+          </div>
+        </header>
+
+        <!-- Seção de visualização do pet -->
+        <section class="view-pet-section">
+          <h2>Ver pet</h2>
+          <div class="botaoEV">
+            <button class="btn edit">✎ Editar</button>
+            <button class="btn delete">🗑️ Deletar</button>
+          </div>
+
+          <div class="pet-details">
+            <p><strong>Proprietário:</strong> José da Silva</p>
+            <p><strong>Id:</strong> 1234509876</p>
+            <p><strong>Nome:</strong> Max</p>
+            <p><strong>Tipo:</strong> Cachorro</p>
+            <p><strong>Raça:</strong> Pastor Alemão</p>
+            <p><strong>Imagem:</strong></p>
+            <div class="image-placeholder"></div>
+            <p><strong>Reservas:</strong></p>
+            <p>
+              <a href="#" class="completed"
+                >02/05/2021 - 07/05/2021 (completa)</a
+              >
+            </p>
+            <p>
+              <a href="#" class="in-progress"
+                >02/05/2021 - 07/05/2021 (em andamento)</a
+              >
+            </p>
+          </div>
+
+          <button class="btn back" onclick="window.location.href='pets.html'">
+            ← Voltar
+          </button>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

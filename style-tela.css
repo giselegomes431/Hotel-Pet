@@ -237,8 +237,120 @@ body {
   max-width: 1195px;
   max-height: 300px;
   border-radius: 8px;
+  margin-top: 3ch;
 }
 
 .menu {
     background-color: #D4D4D4;
+}
+
+.view-pet-section {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.view-pet-section h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.pet-info {
+  background-color: #e7e7e7;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.pet-info p {
+  margin-bottom: 10px;
+}
+
+.image-placeholder {
+  width: 150px;
+  height: 150px;
+  background-color: #ccc;
+  display: inline-block;
+  border: 1px solid #aaa;
+  margin-bottom: 20px;
+}
+
+.reservas-list {
+  list-style: none;
+  padding: 0;
+}
+
+.reservas-list li {
+  color: #333;
+}
+
+.btn.edit {
+  background-color: #ffffff;
+  color: #074ee8;
+  border: 2px solid #074ee8;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-right: 10px;
+}
+
+.btn.delete {
+  background-color: #ffffff;
+  color: #e80707;
+  border: 2px solid #e80707;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-right: 10px;
+}
+
+.btn.back {
+  background-color: #ffffff;
+  color: #074ee8;
+  border: 2px solid #074ee8;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 15px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.btn.back:hover, .btn.edit:hover, .btn.delete:hover {
+  background-color: #ddd;
+}
+
+.botaoEV {
+  margin-bottom: 5ch;
+}
+
+.pet-details {
+  font-size: 16px;
+  color: #333;
+}
+
+.pet-details p {
+  margin: 5px 0;
+}
+
+.pet-details .image-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+
+.pet-details a {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.pet-details a.completed {
+  color: #074ee8;
+}
+
+.pet-details a.in-progress {
+  color: #07ca8e;
 }

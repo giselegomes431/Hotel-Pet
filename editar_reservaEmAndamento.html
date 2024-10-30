@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style-editar.css" />
-    <title>Editar reserva</title>
+    <title>Editar reserva em andamento</title>
   </head>
   <body>
     <div class="container">
@@ -16,8 +16,8 @@
             <li><a href="pets.html">Pet</a></li>
             <li><a href="usuarios.html">Usuários</a></li>
             <li><a href="configuracoes.html">Configurações</a></li>
-            <li class="active"><a href="reservas.html">Reservas</a></li>
-            <li><a href="editar_reservaEmAndamento.html">Em andamento</a></li>
+            <li><a href="reservas.html">Reservas</a></li>
+            <li class="active"><a href="editar_reservaEmAndamento.html">Em andamento</a></li>
           </ul>
         </nav>
       </aside>
@@ -26,7 +26,9 @@
       <main class="main-content">
         <!-- Cabeçalho -->
         <header class="header">
-          <div class="breadcrumb">Home / Reservas / Editar reserva</div>
+          <div class="breadcrumb">
+            Home / Reservas / Editar reserva em andamento
+          </div>
           <div class="user-info">
             <span>João da Silva</span>
             <img
@@ -38,7 +40,7 @@
 
         <!-- Seção de reserva -->
         <section class="view-pet-section">
-          <h2>Editar reserva</h2>
+          <h2>Editar reserva em andamento</h2>
           <div class="form-grid">
             <div class="form-fields">
               <div class="form-group">
@@ -71,6 +73,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea
                   <option value="cancelado">Cancelado</option>
                   <option value="finalizado">Finalizado</option>
                 </select>
+              </div>
+              <div class="form-group">
+                <label>Anotações do funcionário</label>
+                <textarea id="notas" name="notas" rows="4">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea
+                >
+              </div>
+              <div class="image-upload">
+                <label>Imagem</label>
+                <div class="image-placeholder">
+                  <!-- Placeholder para imagem -->
+                </div>
+                <input type="file" id="imagem" name="imagem" accept="image/*" />
               </div>
 
               <div class="total-diarias">

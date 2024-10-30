@@ -175,7 +175,7 @@ body {
     display: flex;
     gap: 10px;
     margin-left: 107ch;
-    margin-top: 5ch;
+    margin-top: 10px;
 }
 
 .btn {
@@ -252,7 +252,7 @@ body {
   width: 1000%;
   height: 90vh;
   max-width: 1195px;
-  max-height: 300px;
+  max-height: 350px;
   border-radius: 8px;
   margin-top: 3ch;
 }
@@ -372,19 +372,14 @@ body {
   color: #07ca8e;
 }
 
-/* Botão Salvar e Limpar */
-.btn.salvar {
-  background-color: #074ee8;
-  color: #fff;
+.img-table {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
 }
 
-.btn.limpar {
-  background-color: #ffffff;
-  color: #074ee8;
-  border: 2px solid #074ee8;
-}
-
-.form-buttons .btn:hover {
-  opacity: 0.8;
+.visu {
+  margin-top: 3ch;
 }
 

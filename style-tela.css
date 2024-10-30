@@ -62,6 +62,15 @@ body {
   margin-left: 4ch;
 }
 
+.form-group.small-group {
+  width: 44.5%; /* Ajuste o tamanho conforme necessário */
+  display: inline-block;
+}
+
+.form-group.small-group input {
+  width: 100%; /* Para garantir que o campo ocupe todo o espaço disponível */
+}
+
 /* Estrutura principal */
 .container {
   display: flex;

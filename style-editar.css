@@ -64,6 +64,25 @@ body {
   margin-bottom: 3ch;
 }
 
+.form-group textarea {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 4ch;
+  margin-bottom: 3ch;
+}
+
+.form-group.small-group {
+  width: 44.5%; /* Ajuste o tamanho conforme necessário */
+  display: inline-block;
+}
+
+.form-group.small-group input {
+  width: 100%; /* Para garantir que o campo ocupe todo o espaço disponível */
+}
+
 /* Estrutura principal */
 .container {
   display: flex;
@@ -451,3 +470,15 @@ body {
   opacity: 0.8;
 }
 
+.total-diarias {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+  padding: 8px;
+  margin-left: 3ch;
+}
+
+.total-diarias span {
+  color: #074ee8;
+  font-weight: bold;
+}

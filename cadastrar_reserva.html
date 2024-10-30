@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style-editar.css" />
+    <title>Cadastrar reserva</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Menu lateral -->
+      <aside class="sidebar">
+        <h2>Hotel Pet</h2>
+        <nav>
+          <ul>
+            <li><a href="pets.html">Pet</a></li>
+            <li><a href="usuarios.html">Usuários</a></li>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li class="active"><a href="reservas.html">Reservas</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Conteúdo principal -->
+      <main class="main-content">
+        <!-- Cabeçalho -->
+        <header class="header">
+          <div class="breadcrumb">Home / Reservas / Cadastrar reserva</div>
+          <div class="user-info">
+            <span>João da Silva</span>
+            <img
+              src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
+              alt="Ícone de usuário"
+            />
+          </div>
+        </header>
+
+        <!-- Seção de reserva -->
+        <section class="view-pet-section">
+          <h2>Cadastrar reserva</h2>
+          <div class="form-grid">
+            <div class="form-fields">
+              <div class="form-group">
+                <label for="pet">Pet *</label>
+                <input type="text" id="pet" name="pet" required />
+              </div>
+
+              <div>
+                <div class="form-group small-group">
+                  <label for="inicio">Período</label>
+                  <input type="date" id="inicio" name="inicio" />
+                </div>
+                <div class="form-group small-group">
+                  <input type="date" id="termino" name="termino" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Notas</label>
+                <textarea id="notas" name="notas" rows="4">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea
+                >
+              </div>
+
+              <div class="total-diarias">
+                Total das diárias: <span>R$ 40,00</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn salvar">Salvar</button>
+            <button type="reset" class="btn limpar">Limpar</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

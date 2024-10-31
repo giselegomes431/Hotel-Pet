@@ -166,17 +166,6 @@
     background-color: #ddd;
   }
   
-  .btn.salvar {
-    background-color: #074ee8;
-    color: #fff;
-  }
-  
-  .btn.limpar {
-    background-color: #ffffff;
-    color: #074ee8;
-    border: 2px solid #074ee8;
-  }
-  
   .form-buttons .btn:hover {
     opacity: 0.8;
   }

@@ -19,24 +19,14 @@ body {
   border-radius: 8px;
 }
 
-/* Layout em grid para os campos */
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Duas colunas de largura igual */
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
   flex: 2;
   margin-bottom: 20px;
 }
 
-.form-edit{
-  display:block;
-  grid-template-columns: 1fr 1fr; /* Duas colunas de largura igual */
-  gap: 15px;
-  flex: 1;
-  margin-bottom: 20px;
-}
-
-/* Estilos dos grupos de formulário */
 .form-group label {
   display: block;
   font-size: 14px;
@@ -62,22 +52,11 @@ body {
   margin-left: 4ch;
 }
 
-.form-group.small-group {
-  width: 44.5%; /* Ajuste o tamanho conforme necessário */
-  display: inline-block;
-}
-
-.form-group.small-group input {
-  width: 100%; /* Para garantir que o campo ocupe todo o espaço disponível */
-}
-
-/* Estrutura principal */
 .container {
   display: flex;
   height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
   width: 250px;
   background-color: #fff;
@@ -109,13 +88,11 @@ body {
   font-weight: bold;
 }
 
-/* Conteúdo principal */
 .main-content {
   flex: 1;
   padding: 20px;
 }
 
-/* Cabeçalho */
 .header {
   display: flex;
   justify-content: space-between;
@@ -142,7 +119,6 @@ body {
   margin-left: 10px;
 }
 
-/* Pets Section */
 .pets-section {
   background-color: #f1f1f1;
   padding: 20px;
@@ -153,38 +129,11 @@ body {
   margin-bottom: 10px;
 }
 
-.btn.new-pet {
-  background-color: #ffffff;
-  color: #074ee8;
-  border: 2px solid #074ee8; /* Borda azul */
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 10px 15px;
-  margin-bottom: 20px;
-}
-
-.btn.new-pet:hover {
-  background-color: #07cae8; /* Muda para um tom mais escuro de azul */
-  color: #fff;
-  cursor: pointer;
-}
-
-/* Formulário de pesquisa */
-.search-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  background-color: #eee;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
 .form-buttons {
-    display: flex;
-    gap: 10px;
-    margin-left: 107ch;
-    margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  margin-left: 107ch;
+  margin-top: 10px;
 }
 
 .btn {
@@ -198,29 +147,21 @@ body {
 .btn.search {
   background-color: #074ee8;
   color: #fff;
-}
-
-.btn.clear {
-  background-color: #ffffff;
-  color: #074ee8;
-  border: 2px solid #074ee8; /* Borda azul */
+  border: 2px solid #074ee8;
   border-radius: 5px;
-  cursor: pointer;
+  border-color: #074ee8;
+  padding: 8px 12px;
+  margin-right: 10px;
 }
 
 .btn.search:hover {
-  background-color: #07cae8; /* Tom mais escuro de azul */
+  background-color: #07cae8;
   color: #fff;
   cursor: pointer;
+  border: 2px solid #07cae8;
+  border-color: #07cae8;
 }
 
-.btn.clear:hover {
-  background-color: #bbb; /* Tom mais escuro de cinza */
-  color: #333;
-  cursor: pointer;
-}
-
-/* Tabela */
 .pets-table {
   width: 100%;
   border-collapse: collapse;
@@ -267,49 +208,7 @@ body {
 }
 
 .menu {
-    background-color: #D4D4D4;
-}
-
-.view-pet-section {
-  background-color: #f1f1f1;
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-}
-
-.view-pet-section h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.pet-info {
-  background-color: #e7e7e7;
-  padding: 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  color: #333;
-}
-
-.pet-info p {
-  margin-bottom: 10px;
-}
-
-.image-placeholder {
-  width: 150px;
-  height: 150px;
-  background-color: #ccc;
-  display: inline-block;
-  border: 1px solid #aaa;
-  margin-bottom: 20px;
-}
-
-.reservas-list {
-  list-style: none;
-  padding: 0;
-}
-
-.reservas-list li {
-  color: #333;
+  background-color: #d4d4d4;
 }
 
 .btn.edit {
@@ -322,63 +221,10 @@ body {
   margin-right: 10px;
 }
 
-.btn.delete {
-  background-color: #ffffff;
-  color: #e80707;
-  border: 2px solid #e80707;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 8px 12px;
-  margin-right: 10px;
-}
-
-.btn.back {
-  background-color: #ffffff;
-  color: #074ee8;
-  border: 2px solid #074ee8;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 10px 15px;
-  display: inline-block;
-  margin-top: 20px;
-}
-
-.btn.back:hover, .btn.edit:hover, .btn.delete:hover {
+.btn.back:hover,
+.btn.edit:hover,
+.btn.delete:hover {
   background-color: #ddd;
-}
-
-.botaoEV {
-  margin-bottom: 5ch;
-}
-
-.pet-details {
-  font-size: 16px;
-  color: #333;
-}
-
-.pet-details p {
-  margin: 5px 0;
-}
-
-.pet-details .image-placeholder {
-  width: 100px;
-  height: 100px;
-  background-color: #e0e0e0;
-  border: 1px solid #ccc;
-  display: inline-block;
-}
-
-.pet-details a {
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.pet-details a.completed {
-  color: #074ee8;
-}
-
-.pet-details a.in-progress {
-  color: #07ca8e;
 }
 
 .img-table {
@@ -391,4 +237,3 @@ body {
 .visu {
   margin-top: 3ch;
 }
-

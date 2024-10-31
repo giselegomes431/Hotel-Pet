@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #2C5D12;
 }
 
 .container {
@@ -19,7 +19,7 @@ body {
   max-width: 450px;
   max-height: 900px;
   padding: 20px;
-  background-color: #e5e5e5;
+  background-color: #CFFFC4;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -30,7 +30,7 @@ body {
   height: 90vh;
   max-width: 700px;
   max-height: 1100px;
-  background-color: #e5e5e5;
+  background-color: #CFFFC4;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -51,11 +51,11 @@ body {
 }
 
 .links a:hover {
-  color: #074ee8; /* Cor ao passar o mouse */
+  color: #6CE52B; /* Cor ao passar o mouse */
 }
 
 h1 {
-  color: #074ee8;
+  color: #2C5D12;
   margin-bottom: 5ch;
 }
 
@@ -80,7 +80,7 @@ form select {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #074ee8;
+  background-color: #2C5D12;
   border: none;
   color: #fff;
   font-weight: bold;
@@ -90,7 +90,7 @@ button {
 }
 
 button:hover {
-  background-color: #07CAE8;
+  background-color: #6CE52B;
 }
 
 table {
@@ -108,7 +108,7 @@ td {
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #CFFFC4;
   color: #333;
 }
 

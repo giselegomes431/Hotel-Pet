@@ -15,7 +15,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #dfdfdf;
+  background-color: #2C5D12;
   border-radius: 8px;
 }
 
@@ -32,6 +32,7 @@ body {
   font-size: 14px;
   margin-bottom: 5px;
   margin-left: 4ch;
+  color: #fff;
 }
 
 .form-group input {
@@ -58,7 +59,7 @@ body {
 }
 
 .form-group.small-group input {
-  width: 100%;
+  width: 90%;
 }
 
 .container {
@@ -68,13 +69,13 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #fff;
+  background-color: #CFFFC4;
   padding: 20px;
   border-right: 1px solid #ddd;
 }
 
 .sidebar h2 {
-  color: #074ee8;
+  color: #2C5D12;
   margin-bottom: 20px;
 }
 
@@ -92,8 +93,13 @@ body {
   font-size: 16px;
 }
 
+.sidebar a:hover {
+  color: #6CE52B; /* Cor ao passar o mouse */
+  font-weight: bold;
+}
+
 .sidebar nav ul li.active a {
-  color: #074ee8;
+  color: #2C5D12;
   font-weight: bold;
 }
 
@@ -129,7 +135,7 @@ body {
 }
 
 .pets-section {
-  background-color: #f1f1f1;
+  background-color: #CFFFC4;
   padding: 20px;
   border-radius: 8px;
 }
@@ -158,11 +164,11 @@ body {
   }
   
   .btn.search:hover {
-    background-color: #07cae8;
+    background-color: #6CE52B;
     color: #fff;
     cursor: pointer;
-    border: 2px solid #07cae8;
-    border-color: #07cae8;
+    border: 2px solid #6CE52B;
+    border-color: #6CE52B;
   }
 
 .pets-table {
@@ -180,6 +186,11 @@ body {
   border: 1px solid #ddd;
   text-align: left;
   font-size: 14px;
+}
+
+.pets-table th
+ {
+  color: #fff;
 }
 
 .pets-table th input[type="checkbox"] {
@@ -200,7 +211,7 @@ body {
 }
 
 .div {
-  background-color: #dfdfdf;
+  background-color: #2C5D12;
   margin-bottom: 5ch;
   width: 1000%;
   height: 90vh;
@@ -211,14 +222,14 @@ body {
 }
 
 .menu {
-  background-color: #d4d4d4;
+  background-color: #2C5D12;
 }
 
 
 .btn.edit {
   background-color: #ffffff;
-  color: #074ee8;
-  border: 2px solid #074ee8;
+  color: #2C5D12;
+  border: 2px solid #2C5D12;
   border-radius: 5px;
   cursor: pointer;
   padding: 8px 12px;
@@ -228,5 +239,6 @@ body {
 .btn.back:hover,
 .btn.edit:hover,
 .btn.delete:hover {
-  background-color: #ddd;
+  background-color: #6CE52B;
+  color: #fff;
 }

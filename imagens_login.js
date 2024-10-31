@@ -15,4 +15,4 @@ function changeImage() {
   banner.src = images[currentImageIndex];
 }
 
-setInterval(changeImage, 4000);
+setInterval(changeImage, 5000);

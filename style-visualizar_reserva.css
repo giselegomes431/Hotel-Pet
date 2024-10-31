@@ -17,13 +17,13 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #fff;
+  background-color: #CFFFC4;
   padding: 20px;
   border-right: 1px solid #ddd;
 }
 
 .sidebar h2 {
-  color: #074ee8;
+  color: #2C5D12;
   margin-bottom: 20px;
 }
 
@@ -41,8 +41,13 @@ body {
   font-size: 16px;
 }
 
+.sidebar a:hover {
+  color: #6CE52B; /* Cor ao passar o mouse */
+  font-weight: bold;
+}
+
 .sidebar nav ul li.active a {
-  color: #074ee8;
+  color: #2C5D12;
   font-weight: bold;
 }
 
@@ -78,7 +83,7 @@ body {
 }
 
 .view-pet-section {
-  background-color: #f1f1f1;
+  background-color: #CFFFC4;
   padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
@@ -100,8 +105,7 @@ body {
 
 .btn.edit {
   background-color: #ffffff;
-  color: #074ee8;
-  border: 2px solid #074ee8;
+  color: #2C5D12;
   border-radius: 5px;
   cursor: pointer;
   padding: 8px 12px;
@@ -120,8 +124,8 @@ body {
 
 .btn.back {
   background-color: #ffffff;
-  color: #074ee8;
-  border: 2px solid #074ee8;
+  color: #2C5D12;
+  border: 2px solid #2C5D12;
   border-radius: 5px;
   cursor: pointer;
   padding: 10px 15px;
@@ -132,7 +136,8 @@ body {
 .btn.back:hover,
 .btn.edit:hover,
 .btn.delete:hover {
-  background-color: #ddd;
+  background-color: #6CE52B;
+  color: #fff;
 }
 
 .botaoEV {
@@ -141,7 +146,7 @@ body {
 
 .pet-details {
   font-size: 16px;
-  color: #333;
+  color: #2C5D12;
 }
 
 .pet-details p {

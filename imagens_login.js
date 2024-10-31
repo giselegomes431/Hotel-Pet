@@ -1,6 +1,5 @@
 let currentImageIndex = 0;
 const images = [
-  "https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg",
   "https://wallpapers.com/images/hd/cat-on-trunk-and-dog-ykyvdpiqc7o20c0a.jpg",
   "https://images.ecycle.com.br/wp-content/uploads/2021/11/22172617/cachorro-desidratado-1024x683.jpg.webp",
   "https://cdn.pixabay.com/photo/2017/08/14/17/17/kittens-2641211_640.jpg",

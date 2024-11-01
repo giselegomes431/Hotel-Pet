@@ -281,6 +281,14 @@ body {
   color: #fff;
 }
 
+.btn.remover:hover,
+.btn.btnfuncao:hover,
+.btn.btnstatus:hover,
+.btn.btnusuarios:hover {
+  background-color: #6CE52B;
+  color: #fff;
+}
+
 .img-table {
   width: 30px;
   height: 30px;

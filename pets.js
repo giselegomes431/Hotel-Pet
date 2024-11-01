@@ -1,5 +1,6 @@
 // Seleciona os elementos necessários
 const searchButton = document.querySelector(".btn.search");
+const removeButton = document.querySelector(".btn.remover");
 const clearButton = document.querySelector(".btn.delete");
 const tableBody = document.querySelector(".pets-table tbody");
 const rows = Array.from(tableBody.querySelectorAll("tr")); // Todas as linhas originais
@@ -46,6 +47,18 @@ function clearSearch() {
   rows.forEach((row) => tableBody.appendChild(row)); // Retorna as linhas originais
 }
 
+function removeUsers() {
+  // Seleciona todas as linhas da tabela após a possível filtragem
+  const currentRows = Array.from(tableBody.querySelectorAll("tr"));
+  const selectedRows = currentRows.filter(
+    (row) => row.querySelector('input[type="checkbox"]').checked
+  );
+
+  // Remove as linhas selecionadas
+  selectedRows.forEach((row) => row.remove());
+}
+
 // Eventos dos botões
 searchButton.addEventListener("click", searchPets);
 clearButton.addEventListener("click", clearSearch);
+removeButton.addEventListener("click", removeUsers);

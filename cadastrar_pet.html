@@ -89,5 +89,40 @@
         </section>
       </main>
     </div>
+
+    <script src="cadastrar_pet.js"></script>
+    <script>
+      function gerarId() {
+        return Math.floor(12349984502 * 2).toString(36); // Gera ID único
+      }
+
+      function salvarPet() {
+        const id = gerarId();
+        const nome = document.getElementById("nome").value;
+        const tipo = document.getElementById("tipo").value;
+        const raca = document.getElementById("raca").value;
+        const tamanho = document.getElementById("tamanho").value;
+
+        const pet = { id, nome, tipo, raca, tamanho };
+
+        let pets = JSON.parse(localStorage.getItem("pets")) || [];
+        pets.push(pet);
+        localStorage.setItem("pets", JSON.stringify(pets));
+
+        document.getElementById("modalConfirmacao").style.display = "block";
+      }
+
+      function limparFormulario() {
+        document.getElementById("nome").value = "";
+        document.getElementById("tipo").value = "cachorro";
+        document.getElementById("raca").value = "";
+        document.getElementById("tamanho").value = "pequeno";
+      }
+
+      function fecharModal() {
+        document.getElementById("modalConfirmacao").style.display = "none";
+        limparFormulario();
+      }
+    </script>
   </body>
 </html>

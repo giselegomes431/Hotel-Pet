@@ -13,13 +13,23 @@ function salvarPet(event) {
   const raca = document.getElementById('raca').value;
   const tamanho = document.getElementById('tamanho').value;
 
+  // Gera um id único para o pet
+  let id = localStorage.getItem('petIdCounter');
+  if (!id) {
+    id = 1; // Se não houver contador, começa do 1
+  } else {
+    id = parseInt(id) + 1; // Incrementa o contador
+  }
+  localStorage.setItem('petIdCounter', id); // Atualiza o contador no localStorage
+
   // Cria um objeto para o pet
   const novoPet = {
     proprietario,
     nome,
     tipo,
     raca,
-    tamanho
+    tamanho,
+    id
   };
 
   // Recupera a lista de pets do localStorage ou cria uma nova lista

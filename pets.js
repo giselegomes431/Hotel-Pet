@@ -54,13 +54,23 @@ function removeUsers() {
     (row) => row.querySelector('input[type="checkbox"]').checked
   );
 
-  // Remove as linhas selecionadas
+  // Remove os itens do localStorage usando o id como chave
+  selectedRows.forEach((row) => {
+    const petId = row.getAttribute("id"); // Supõe que cada linha tem um atributo data-id com o ID do pet
+    if (petId) {
+      localStorage.removeItem(`pet_${petId}`); // Remove o item usando "pet_" como prefixo e o id como chave
+    }
+  });
+
+  // Remove as linhas selecionadas da tabela
   selectedRows.forEach((row) => row.remove());
 
   // Atualiza o array `rows` (se necessário para outras funções)
   rows.length = 0; // Limpa o array
   Array.from(tableBody.querySelectorAll("tr")).forEach((row) => rows.push(row)); // Repopula o array
 }
+
+
 
 // Eventos dos botões
 searchButton.addEventListener("click", searchPets);

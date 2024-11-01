@@ -48,7 +48,7 @@ function clearSearch() {
 }
 
 function removeUsers() {
-  // Seleciona todas as linhas da tabela após a possível filtragem
+  // Seleciona todas as linhas da tabela atualmente visíveis
   const currentRows = Array.from(tableBody.querySelectorAll("tr"));
   const selectedRows = currentRows.filter(
     (row) => row.querySelector('input[type="checkbox"]').checked
@@ -56,6 +56,10 @@ function removeUsers() {
 
   // Remove as linhas selecionadas
   selectedRows.forEach((row) => row.remove());
+
+  // Atualiza o array `rows` (se necessário para outras funções)
+  rows.length = 0; // Limpa o array
+  Array.from(tableBody.querySelectorAll("tr")).forEach((row) => rows.push(row)); // Repopula o array
 }
 
 // Eventos dos botões

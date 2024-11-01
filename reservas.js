@@ -3,7 +3,6 @@ const searchButton = document.querySelector(".btn.search");
 const removeButton = document.querySelector(".btn.remover");
 const clearButton = document.querySelector(".btn.delete");
 const tableBody = document.querySelector(".pets-table tbody");
-const rows = Array.from(tableBody.querySelectorAll("tr"));
 const noResultsRow = document.createElement("tr");
 noResultsRow.innerHTML = '<td colspan="7">Nenhum resultado encontrado.</td>';
 noResultsRow.style.display = "none";
@@ -11,28 +10,24 @@ noResultsRow.style.display = "none";
 // Função de pesquisa
 function searchReservations() {
   const idValue = document.getElementById("id").value.toLowerCase();
-  const ownerValue = document
-    .getElementById("proprietario")
-    .value.toLowerCase();
+  const ownerValue = document.getElementById("proprietario").value.toLowerCase();
   const statusValue = document.getElementById("status").value.toLowerCase();
   const startDateValue = document.getElementById("inicio").value;
   const endDateValue = document.getElementById("termino").value;
   const petValue = document.getElementById("pet").value.toLowerCase();
 
-  const filteredRows = rows.filter((row) => {
+  // Seleciona todas as linhas da tabela para aplicar a filtragem
+  const allRows = Array.from(tableBody.querySelectorAll("tr"));
+  const filteredRows = allRows.filter((row) => {
     const [id, pet, startDate, endDate, status] = row.querySelectorAll("td");
     const totalValue = row.cells[5].textContent.toLowerCase();
 
     return (
       (!idValue || id.textContent.toLowerCase().includes(idValue)) &&
-      (!ownerValue ||
-        row.cells[1].textContent.toLowerCase().includes(ownerValue)) &&
-      (!statusValue ||
-        status.textContent.toLowerCase().includes(statusValue)) &&
-      (!startDateValue ||
-        new Date(startDate.textContent) >= new Date(startDateValue)) &&
-      (!endDateValue ||
-        new Date(endDate.textContent) <= new Date(endDateValue)) &&
+      (!ownerValue || row.cells[1].textContent.toLowerCase().includes(ownerValue)) &&
+      (!statusValue || status.textContent.toLowerCase().includes(statusValue)) &&
+      (!startDateValue || new Date(startDate.textContent) >= new Date(startDateValue)) &&
+      (!endDateValue || new Date(endDate.textContent) <= new Date(endDateValue)) &&
       (!petValue || pet.textContent.toLowerCase().includes(petValue))
     );
   });
@@ -46,8 +41,9 @@ function searchReservations() {
   }
 }
 
+// Função de remoção de usuários
 function removeUsers() {
-  // Seleciona todas as linhas da tabela após a possível filtragem
+  // Seleciona todas as linhas da tabela atualmente visíveis
   const currentRows = Array.from(tableBody.querySelectorAll("tr"));
   const selectedRows = currentRows.filter(
     (row) => row.querySelector('input[type="checkbox"]').checked
@@ -55,6 +51,10 @@ function removeUsers() {
 
   // Remove as linhas selecionadas
   selectedRows.forEach((row) => row.remove());
+
+  // Atualiza o array `rows` (se necessário para outras funções)
+  rows.length = 0; // Limpa o array
+  Array.from(tableBody.querySelectorAll("tr")).forEach((row) => rows.push(row)); // Repopula o array
 }
 
 // Função para limpar os campos de pesquisa e restaurar a tabela

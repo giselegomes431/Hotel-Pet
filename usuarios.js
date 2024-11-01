@@ -54,8 +54,18 @@ function clearSearch() {
 
 // Função para remover usuários selecionados
 function removeUsers() {
-  const selectedRows = rows.filter(row => row.querySelector('input[type="checkbox"]').checked);
-  selectedRows.forEach(row => row.remove());
+  // Seleciona todas as linhas da tabela atualmente visíveis
+  const currentRows = Array.from(tableBody.querySelectorAll("tr"));
+  const selectedRows = currentRows.filter(
+    (row) => row.querySelector('input[type="checkbox"]').checked
+  );
+
+  // Remove as linhas selecionadas
+  selectedRows.forEach((row) => row.remove());
+
+  // Atualiza o array `rows` (se necessário para outras funções)
+  rows.length = 0; // Limpa o array
+  Array.from(tableBody.querySelectorAll("tr")).forEach((row) => rows.push(row)); // Repopula o array
 }
 
 // Função para alternar status dos usuários selecionados

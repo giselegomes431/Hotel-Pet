@@ -35,51 +35,102 @@
           </div>
         </header>
 
-        <!-- Seção de edição do pet -->
+        <!-- Seção de cadastro do usuário -->
         <section class="view-pet-section">
           <h2>Cadastrar Usuário</h2>
-          <div class="form-grid">
-            <div class="form-fields">
-              <div class="form-group">
-                <label for="email">Email: *</label>
-                <input type="text" id="email" name="email" required />
-              </div>
-              <div class="form-group">
-                <label for="nome">Nome: *</label>
-                <input type="text" id="nome" name="nome" required />
-              </div>
+          <form id="cadastrarUsuarioForm">
+            <div class="form-grid">
+              <div class="form-fields">
                 <div class="form-group">
-                    <label for="sobrenome">Sobrenome: *</label>
-                    <input type="text" id="sobrenome" name="sobrenome" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="telefone">Telefone: *</label>
-                    <input type="number" id="telefone" name="telefone" required />
-                  </div>
-                  <div class="form-group">
-                <label for="funcao">Função:</label>
-                <select id="funcao" name="funcao">
-                  <option value="">Selecione</option>
-                  <option value="gerente">Gerente</option>
-                  <option value="funcionario">Funcionário</option>
-                  <option value="cliente">Cliente</option>
-                </select>
-                  </div>
+                  <label for="email">Email: *</label>
+                  <input type="text" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="nome">Nome: *</label>
+                  <input type="text" id="nome" name="nome" required />
+                </div>
+                <div class="form-group">
+                  <label for="sobrenome">Sobrenome: *</label>
+                  <input type="text" id="sobrenome" name="sobrenome" required />
+                </div>
+                <div class="form-group">
+                  <label for="telefone">Telefone: *</label>
+                  <input type="number" id="telefone" name="telefone" required />
+                </div>
+                <div class="form-group">
+                  <label for="funcao">Função:</label>
+                  <select id="funcao" name="funcao">
+                    <option value="">Selecione</option>
+                    <option value="gerente">Gerente</option>
+                    <option value="funcionario">Funcionário</option>
+                    <option value="cliente">Cliente</option>
+                  </select>
+                </div>
               </div>
-            <div class="image-upload">
-              <label for="imagem">Imagem:</label>
-              <div class="image-placeholder">
-                <!-- Placeholder para imagem -->
+              <div class="image-upload">
+                <label for="imagem">Imagem:</label>
+                <div class="image-placeholder">
+                  <!-- Placeholder para imagem -->
+                </div>
+                <input type="file" id="imagem" name="imagem" accept="image/*" />
               </div>
-              <input type="file" id="imagem" name="imagem" accept="image/*" />
             </div>
-          </div>
-          <div class="form-buttons">
-            <button type="submit" class="btn search">Salvar</button>
-            <button type="reset" class="btn edit">Limpar</button>
-          </div>
+            <div class="form-buttons">
+              <button type="submit" class="btn search">Salvar</button>
+              <button type="reset" class="btn edit">Limpar</button>
+            </div>
+          </form>
         </section>
       </main>
     </div>
+
+    <script>
+      function salvarUsuario(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const nome = document.getElementById("nome").value.trim();
+        const sobrenome = document.getElementById("sobrenome").value.trim();
+        const telefone = document.getElementById("telefone").value.trim();
+        const funcao = document.getElementById("funcao").value.trim();
+
+        // Verifica se todos os campos obrigatórios estão preenchidos
+        if (!email || !nome || !sobrenome || !telefone || !funcao) {
+          alert("Preencha todos os campos obrigatórios!");
+          return;
+        }
+
+        // Criar um objeto do usuário
+        const usuario = {
+          id: Date.now(), // Usando timestamp como ID único
+          email,
+          nome,
+          sobrenome,
+          telefone,
+          funcao,
+          status: "Ativo", // Definindo status padrão
+          criadoEm: new Date().toISOString(), // Data de criação
+        };
+
+        // Recuperar os usuários do localStorage, ou inicializar um array vazio
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        // Adicionar o novo usuário ao array
+        usuarios.push(usuario);
+
+        // Salvar o array atualizado no localStorage
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        // Exibir mensagem de sucesso
+        alert("Usuário cadastrado com sucesso!");
+
+        // Redirecionar para a página de listagem
+        window.location.href = "usuarios.html";
+      }
+
+      document
+        .getElementById("cadastrarUsuarioForm")
+        .addEventListener("submit", salvarUsuario);
+    </script>
   </body>
 </html>

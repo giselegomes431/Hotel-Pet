@@ -71,11 +71,14 @@
               </div>
             </div>
             <div class="form-buttons">
-              <button class="btn search">Pesquisar</button>
-              <button class="btn delete">Limpar</button>
+              <button class="btn search" onclick="pesquisarPets()">
+                Pesquisar
+              </button>
+              <button class="btn delete" onclick="limparPesquisa()">
+                Limpar
+              </button>
             </div>
           </div>
-
           <!-- Tabela de resultados -->
           <table class="pets-table">
             <thead>
@@ -99,8 +102,9 @@
 
     <script>
       // Função para carregar pets do localStorage
-      function carregarPets() {
-        const pets = JSON.parse(localStorage.getItem("pets")) || [];
+      function carregarPets(petsFiltrados) {
+        const pets =
+          petsFiltrados || JSON.parse(localStorage.getItem("pets")) || [];
         const tabelaPets = document.querySelector(".pets-table tbody");
 
         // Limpar a tabela antes de preencher
@@ -144,6 +148,36 @@
         localStorage.setItem("pets", JSON.stringify(petsAtualizados));
 
         // Atualizar a tabela após a remoção
+        carregarPets();
+      }
+
+      // Função para pesquisar pets
+      function pesquisarPets() {
+        const id = document.getElementById("id").value.toLowerCase();
+        const raca = document.getElementById("raca").value.toLowerCase();
+        const nome = document.getElementById("nome").value.toLowerCase();
+        const tamanho = document.getElementById("tamanho").value.toLowerCase();
+
+        const pets = JSON.parse(localStorage.getItem("pets")) || [];
+
+        const petsFiltrados = pets.filter((pet) => {
+          return (
+            (id ? pet.id.toLowerCase().includes(id) : true) &&
+            (raca ? pet.raca.toLowerCase().includes(raca) : true) &&
+            (nome ? pet.nome.toLowerCase().includes(nome) : true) &&
+            (tamanho ? pet.tamanho.toLowerCase().includes(tamanho) : true)
+          );
+        });
+
+        carregarPets(petsFiltrados);
+      }
+
+      // Função para limpar campos de pesquisa
+      function limparPesquisa() {
+        document.getElementById("id").value = "";
+        document.getElementById("raca").value = "";
+        document.getElementById("nome").value = "";
+        document.getElementById("tamanho").value = "";
         carregarPets();
       }
 

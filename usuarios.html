@@ -44,13 +44,18 @@
           >
             + Novo
           </button>
-          <button class="btn remover">Remover</button>
-          <button class="btn btnstatus">Mudar Status</button>
+          <button class="btn remover" onclick="removerUsuariosSelecionados()">
+            Remover
+          </button>
 
           <div class="visu">
-            <label for="funcao">Visualizar por: </label>
-            <button class="btn btnusuarios">Usuários</button>
-            <button class="btn btnfuncao">Função</button>
+            <label for="visualizarPor">Visualizar por: </label>
+            <button class="btn btnusuarios" onclick="visualizarUsuarios()">
+              Usuários
+            </button>
+            <button class="btn btnfuncao" onclick="visualizarFuncoes()">
+              Função
+            </button>
           </div>
 
           <!-- Formulário de pesquisa -->
@@ -93,11 +98,14 @@
               </div>
             </div>
             <div class="form-buttons">
-              <button class="btn search">Pesquisar</button>
-              <button class="btn delete">Limpar</button>
+              <button class="btn search" onclick="pesquisarUsuarios()">
+                Pesquisar
+              </button>
+              <button class="btn delete" onclick="limparPesquisa()">
+                Limpar
+              </button>
             </div>
           </div>
-
           <!-- Tabela de resultados -->
           <table class="pets-table">
             <thead>
@@ -113,69 +121,140 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <img
-                    class="img-table"
-                    src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
-                    alt="Foto de João da Silva"
-                  />
-                </td>
-                <td>joaodasilva@pet.com</td>
-                <td>João da Silva</td>
-                <td>Gerente</td>
-                <td><span class="status ativo">Ativo</span></td>
-                <td>19/02/2020</td>
-                <td>
-                  <a href="editar_usuario.html">Editar</a> |
-                  <a href="visualizar_usuario.html">Visualizar</a>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <img
-                    class="img-table"
-                    src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
-                    alt="Foto de Maria da Silva"
-                  />
-                </td>
-                <td>maria@pet.com</td>
-                <td>Maria da Silva</td>
-                <td>Funcionário</td>
-                <td><span class="status inativo">Inativo</span></td>
-                <td>19/02/2020</td>
-                <td>
-                  <a href="editar_usuario.html">Editar</a> |
-                  <a href="visualizar_usuario.html">Visualizar</a>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>
-                  <img
-                    class="img-table"
-                    src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
-                    alt="Foto de José da Silva"
-                  />
-                </td>
-                <td>josedasilva@pet.com</td>
-                <td>José da Silva</td>
-                <td>Cliente</td>
-                <td><span class="status ativo">Ativo</span></td>
-                <td>19/02/2020</td>
-                <td>
-                  <a href="editar_usuario.html">Editar</a> |
-                  <a href="visualizar_usuario.html">Visualizar</a>
-                </td>
-              </tr>
+              <!-- As linhas da tabela serão preenchidas pelo JavaScript -->
             </tbody>
           </table>
         </section>
       </main>
     </div>
-    <script src="usuarios.js"></script>
 
+    <script>
+      // Função para carregar usuários do localStorage
+      function carregarUsuarios(usuariosFiltrados) {
+        const usuarios =
+          usuariosFiltrados ||
+          JSON.parse(localStorage.getItem("usuarios")) ||
+          [];
+        const tabelaUsuarios = document.querySelector(".pets-table tbody");
+
+        // Limpar a tabela antes de preencher
+        tabelaUsuarios.innerHTML = "";
+
+        // Preencher a tabela com os usuários
+        usuarios.forEach((usuario) => {
+          const linha = document.createElement("tr");
+          linha.innerHTML = `
+            <td><input type="checkbox" data-id="${usuario.id}" /></td>
+            <td>
+              <img
+                class="img-table"
+                src="${
+                  usuario.imagem ||
+                  "https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
+                }"
+                alt="Foto de ${usuario.nome}"
+              />
+            </td>
+            <td>${usuario.email}</td>
+            <td>${usuario.nome}</td>
+            <td>${usuario.funcao}</td>
+            <td><span class="status ${usuario.status.toLowerCase()}">${
+            usuario.status
+          }</span></td>
+            <td>${new Date(usuario.criadoEm).toLocaleDateString()}</td>
+            <td>
+              <a href="visualizar_usuario.html?id=${
+                usuario.id
+              }">Visualizar</a> |
+              <a href="editar_usuario.html?id=${usuario.id}">Editar</a>
+            </td>
+          `;
+          tabelaUsuarios.appendChild(linha);
+        });
+      }
+
+      // Função para remover usuários selecionados
+      function removerUsuariosSelecionados() {
+        const checkboxes = document.querySelectorAll(
+          '.pets-table tbody input[type="checkbox"]:checked'
+        );
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        // Filtrar os usuários que não estão selecionados
+        const usuariosAtualizados = usuarios.filter(
+          (usuario) =>
+            !Array.from(checkboxes).some(
+              (checkbox) => checkbox.dataset.id == usuario.id
+            )
+        );
+
+        // Atualizar o localStorage com os usuários não selecionados
+        localStorage.setItem("usuarios", JSON.stringify(usuariosAtualizados));
+
+        // Atualizar a tabela após a remoção
+        carregarUsuarios();
+      }
+
+      // Função para pesquisar usuários
+      function pesquisarUsuarios() {
+        const id = document.getElementById("id").value.toLowerCase();
+        const email = document.getElementById("email").value.toLowerCase();
+        const status = document.getElementById("status").value.toLowerCase();
+        const data = document.getElementById("data").value;
+        const nome = document.getElementById("nome").value.toLowerCase();
+        const funcao = document.getElementById("funcao").value.toLowerCase();
+
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        const usuariosFiltrados = usuarios.filter((usuario) => {
+          return (
+            (id ? usuario.id.toLowerCase().includes(id) : true) &&
+            (email ? usuario.email.toLowerCase().includes(email) : true) &&
+            (status ? usuario.status.toLowerCase() === status : true) &&
+            (data
+              ? new Date(usuario.criadoEm).toLocaleDateString() ===
+                new Date(data).toLocaleDateString()
+              : true) &&
+            (nome ? usuario.nome.toLowerCase().includes(nome) : true) &&
+            (funcao ? usuario.funcao.toLowerCase() === funcao : true)
+          );
+        });
+
+        carregarUsuarios(usuariosFiltrados);
+      }
+
+      // Função para limpar campos de pesquisa
+      function limparPesquisa() {
+        document.getElementById("id").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("status").value = "";
+        document.getElementById("data").value = "";
+        document.getElementById("nome").value = "";
+        document.getElementById("funcao").value = "";
+        carregarUsuarios();
+      }
+
+      // Função para visualizar todos os usuários
+      function visualizarUsuarios() {
+        carregarUsuarios();
+      }
+
+      // Função para visualizar usuários por função
+      function visualizarFuncoes() {
+        const funcao = prompt(
+          "Digite a função que deseja visualizar (gerente, funcionario, cliente):"
+        ).toLowerCase();
+        if (funcao) {
+          const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+          const usuariosFiltrados = usuarios.filter(
+            (usuario) => usuario.funcao.toLowerCase() === funcao
+          );
+          carregarUsuarios(usuariosFiltrados);
+        }
+      }
+
+      // Chamar a função ao carregar a página
+      window.onload = carregarUsuarios;
+    </script>
   </body>
 </html>

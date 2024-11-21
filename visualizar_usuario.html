@@ -35,30 +35,31 @@
           </div>
         </header>
 
-        <!-- Seção de visualização do pet -->
+        <!-- Seção de visualização do usuário -->
         <section class="view-pet-section">
           <h2>Ver Usuário</h2>
           <div class="botaoEV">
-            <button
-              class="btn edit"
-              onclick="window.location.href='editar_usuario.html'"
-            >
-              ✎ Editar
-            </button>
-            <button class="btn delete">🗑️ Deletar</button>
+            <button class="btn edit" id="editarUsuario">✎ Editar</button>
+            <button class="btn delete" id="deletarUsuario">🗑️ Deletar</button>
           </div>
 
           <div class="pet-details">
-            <p><strong>Id:</strong> 1234509876</p>
-            <p><strong>Email:</strong> joaodasilva@pet.com</p>
-            <p><strong>Nome:</strong> José</p>
-            <p><strong>Sobrenome:</strong> da Silva</p>
-            <p><strong>Telefone:</strong> 123456789</p>
-            <p><strong>Função:</strong> Clente</p>
-            <p><strong>Status:</strong> Ativo</p>
-            <p><strong>Criado em:</strong> 19/02/2020</p>
+            <p><strong>Id:</strong> <span id="usuario-id"></span></p>
+            <p><strong>Email:</strong> <span id="usuario-email"></span></p>
+            <p><strong>Nome:</strong> <span id="usuario-nome"></span></p>
+            <p>
+              <strong>Sobrenome:</strong> <span id="usuario-sobrenome"></span>
+            </p>
+            <p>
+              <strong>Telefone:</strong> <span id="usuario-telefone"></span>
+            </p>
+            <p><strong>Função:</strong> <span id="usuario-funcao"></span></p>
+            <p><strong>Status:</strong> <span id="usuario-status"></span></p>
+            <p>
+              <strong>Criado em:</strong> <span id="usuario-criado-em"></span>
+            </p>
             <p><strong>Imagem:</strong></p>
-            <div class="image-placeholder"></div>
+            <div class="image-placeholder" id="usuario-imagem"></div>
           </div>
 
           <button
@@ -70,5 +71,64 @@
         </section>
       </main>
     </div>
+
+    <script>
+      // Função para carregar detalhes do usuário a partir dos parâmetros da URL
+      function carregarDetalhesUsuario() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        // Recuperar os usuários do `localStorage`
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        // Encontrar o usuário correspondente ao id
+        const usuario = usuarios.find((u) => u.id == id);
+
+        // Verificar se o usuário foi encontrado
+        if (usuario) {
+          document.getElementById("usuario-id").innerText = usuario.id;
+          document.getElementById("usuario-email").innerText = usuario.email;
+          document.getElementById("usuario-nome").innerText = usuario.nome;
+          document.getElementById("usuario-sobrenome").innerText =
+            usuario.sobrenome;
+          document.getElementById("usuario-telefone").innerText =
+            usuario.telefone;
+          document.getElementById("usuario-funcao").innerText = usuario.funcao;
+          document.getElementById("usuario-status").innerText = usuario.status;
+          document.getElementById("usuario-criado-em").innerText = new Date(
+            usuario.criadoEm
+          ).toLocaleDateString();
+
+          const imgElement = document.createElement("img");
+          imgElement.src =
+            usuario.imagem ||
+            "https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png";
+          imgElement.alt = `Imagem de ${usuario.nome}`;
+          document.getElementById("usuario-imagem").appendChild(imgElement);
+
+          // Configurar botões de Editar e Deletar
+          document.getElementById("editarUsuario").onclick = function () {
+            window.location.href = `editar_usuario.html?id=${usuario.id}`;
+          };
+
+          document.getElementById("deletarUsuario").onclick = function () {
+            deletarUsuario(usuario.id);
+          };
+        } else {
+          alert("Usuário não encontrado!");
+        }
+      }
+
+      // Função para deletar o usuário
+      function deletarUsuario(id) {
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        usuarios = usuarios.filter((u) => u.id != id);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        alert("Usuário deletado com sucesso!");
+        window.location.href = "usuarios.html";
+      }
+
+      window.onload = carregarDetalhesUsuario;
+    </script>
   </body>
 </html>

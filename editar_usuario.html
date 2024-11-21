@@ -35,51 +35,128 @@
           </div>
         </header>
 
-        <!-- Seção de edição do pet -->
+        <!-- Seção de edição do usuário -->
         <section class="view-pet-section">
           <h2>Editar Usuário</h2>
-          <div class="form-grid">
-            <div class="form-fields">
-              <div class="form-group">
-                <label for="email">Email: *</label>
-                <input type="text" id="email" name="email" required />
-              </div>
-              <div class="form-group">
-                <label for="nome">Nome: *</label>
-                <input type="text" id="nome" name="nome" required />
-              </div>
+          <form id="form-editar-usuario">
+            <div class="form-grid">
+              <div class="form-fields">
                 <div class="form-group">
-                    <label for="sobrenome">Sobrenome: *</label>
-                    <input type="text" id="sobrenome" name="sobrenome" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="telefone">Telefone: *</label>
-                    <input type="number" id="telefone" name="telefone" required />
-                  </div>
-                  <div class="form-group">
-                <label for="funcao">Função:</label>
-                <select id="funcao" name="funcao">
-                  <option value="">Selecione</option>
-                  <option value="gerente">Gerente</option>
-                  <option value="funcionario">Funcionário</option>
-                  <option value="cliente">Cliente</option>
-                </select>
-                  </div>
+                  <label for="email">Email: *</label>
+                  <input type="text" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="nome">Nome: *</label>
+                  <input type="text" id="nome" name="nome" required />
+                </div>
+                <div class="form-group">
+                  <label for="sobrenome">Sobrenome: *</label>
+                  <input type="text" id="sobrenome" name="sobrenome" required />
+                </div>
+                <div class="form-group">
+                  <label for="telefone">Telefone: *</label>
+                  <input type="number" id="telefone" name="telefone" required />
+                </div>
+                <div class="form-group">
+                  <label for="funcao">Função:</label>
+                  <select id="funcao" name="funcao">
+                    <option value="">Selecione</option>
+                    <option value="gerente">Gerente</option>
+                    <option value="funcionario">Funcionário</option>
+                    <option value="cliente">Cliente</option>
+                  </select>
+                </div>
               </div>
-            <div class="image-upload">
-              <label for="imagem">Imagem:</label>
-              <div class="image-placeholder">
-                <!-- Placeholder para imagem -->
+              <div class="image-upload">
+                <label for="imagem">Imagem:</label>
+                <div class="image-placeholder">
+                  <!-- Placeholder para imagem -->
+                </div>
+                <input type="file" id="imagem" name="imagem" accept="image/*" />
               </div>
-              <input type="file" id="imagem" name="imagem" accept="image/*" />
             </div>
-          </div>
-          <div class="form-buttons">
-            <button type="submit" class="btn search">Salvar</button>
-            <button type="reset" class="btn edit">Limpar</button>
-          </div>
+            <div class="form-buttons">
+              <button type="submit" class="btn search">Salvar</button>
+              <button type="reset" class="btn edit">Limpar</button>
+            </div>
+          </form>
         </section>
       </main>
     </div>
+
+    <script>
+      // Função para carregar detalhes do usuário a partir dos parâmetros da URL
+      function carregarDetalhesUsuario() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        // Recuperar os usuários do `localStorage`
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        // Encontrar o usuário correspondente ao id
+        const usuario = usuarios.find((u) => u.id == id);
+
+        // Verificar se o usuário foi encontrado
+        if (usuario) {
+          document.getElementById("email").value = usuario.email;
+          document.getElementById("nome").value = usuario.nome;
+          document.getElementById("sobrenome").value = usuario.sobrenome;
+          document.getElementById("telefone").value = usuario.telefone;
+          document.getElementById("funcao").value = usuario.funcao;
+
+          const imgElement = document.createElement("img");
+          imgElement.src =
+            usuario.imagem ||
+            "https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png";
+          imgElement.alt = `Imagem de ${usuario.nome}`;
+          document.querySelector(".image-placeholder").appendChild(imgElement);
+
+          document.getElementById("form-editar-usuario").onsubmit = function (
+            event
+          ) {
+            event.preventDefault();
+            salvarUsuario(usuario.id);
+          };
+        } else {
+          alert("Usuário não encontrado!");
+        }
+      }
+
+      // Função para salvar o usuário editado
+      function salvarUsuario(id) {
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const usuario = usuarios.find((u) => u.id == id);
+
+        if (usuario) {
+          usuario.email = document.getElementById("email").value;
+          usuario.nome = document.getElementById("nome").value;
+          usuario.sobrenome = document.getElementById("sobrenome").value;
+          usuario.telefone = document.getElementById("telefone").value;
+          usuario.funcao = document.getElementById("funcao").value;
+          const imagemInput = document.getElementById("imagem");
+          if (imagemInput.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              usuario.imagem = e.target.result;
+              salvarUsuariosNoLocalStorage(usuarios);
+            };
+            reader.readAsDataURL(imagemInput.files[0]);
+          } else {
+            salvarUsuariosNoLocalStorage(usuarios);
+          }
+        } else {
+          alert("Usuário não encontrado!");
+        }
+      }
+
+      // Função para salvar os usuários no localStorage e redirecionar
+      function salvarUsuariosNoLocalStorage(usuarios) {
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        alert("Usuário atualizado com sucesso!");
+        window.location.href = "usuarios.html";
+      }
+
+      window.onload = carregarDetalhesUsuario;
+    </script>
   </body>
 </html>

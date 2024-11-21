@@ -1,81 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style-editar_pet.css" />
-  <title>Editar Pet</title>
-</head>
-<body>
-  <div class="container">
-    <!-- Menu lateral -->
-    <aside class="sidebar">
-      <h2>Hotel Pet</h2>
-      <nav>
-        <ul>
-          <li class="active"><a href="pets.html">Pets</a></li>
-          <li><a href="usuarios.html">Usuários</a></li>
-          <li><a href="configuracoes.html">Configurações</a></li>
-          <li><a href="reservas.html">Reservas</a></li>
-        </ul>
-      </nav>
-    </aside>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style-editar_pet.css" />
+    <title>Editar Pet</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Menu lateral -->
+      <aside class="sidebar">
+        <h2>Hotel Pet</h2>
+        <nav>
+          <ul>
+            <li class="active"><a href="pets.html">Pets</a></li>
+            <li><a href="usuarios.html">Usuários</a></li>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="reservas.html">Reservas</a></li>
+          </ul>
+        </nav>
+      </aside>
 
-    <!-- Conteúdo principal -->
-    <main class="main-content">
-      <!-- Cabeçalho -->
-      <header class="header">
-        <div class="breadcrumb">Home / Pet / Editar Pet</div>
-        <div class="user-info">
-          <span>João da Silva</span>
-          <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Ícone de usuário" />
-        </div>
-      </header>
+      <!-- Conteúdo principal -->
+      <main class="main-content">
+        <!-- Cabeçalho -->
+        <header class="header">
+          <div class="breadcrumb">Home / Pet / Editar Pet</div>
+          <div class="user-info">
+            <span>João da Silva</span>
+            <img
+              src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png"
+              alt="Ícone de usuário"
+            />
+          </div>
+        </header>
 
-      <!-- Seção de edição do pet -->
-      <section class="view-pet-section">
-        <h2>Editar Pet</h2>
-          <div class="form-grid">
-            <div class="form-fields">
-              <div class="form-group">
-                <label for="nome">Nome: *</label>
-                <input type="text" id="nome" name="nome" required>
+        <!-- Seção de edição do pet -->
+        <section class="view-pet-section">
+          <h2>Editar Pet</h2>
+          <form id="editarPetForm">
+            <div class="form-grid">
+              <div class="form-fields">
+                <div class="form-group">
+                  <label for="proprietario">Proprietário: *</label>
+                  <input
+                    type="text"
+                    id="proprietario"
+                    name="proprietario"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nome">Nome: *</label>
+                  <input type="text" id="nome" name="nome" required />
+                </div>
+                <div class="form-group">
+                  <label for="tipo">Tipo: *</label>
+                  <select id="tipo" name="tipo" required>
+                    <option value="cachorro">Cachorro</option>
+                    <option value="gato">Gato</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="raca">Raça: *</label>
+                  <input type="text" id="raca" name="raca" required />
+                </div>
+                <div class="form-group">
+                  <label for="tamanho">Tamanho: *</label>
+                  <select id="tamanho" name="tamanho" required>
+                    <option value="pequeno">Pequeno</option>
+                    <option value="medio">Médio</option>
+                    <option value="grande">Grande</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="tipo">Tipo: *</label>
-                <select id="tipo" name="tipo" required>
-                  <option value="cachorro">Cachorro</option>
-                  <option value="gato">Gato</option>
-                  <option value="outro">Outro</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="raca">Raça *</label>
-                <input type="text" id="raca" name="raca" required>
-              </div>
-              <div class="form-group">
-                <label for="tamanho">Tamanho: *</label>
-                <select id="tamanho" name="tamanho" required>
-                  <option value="pequeno">Pequeno</option>
-                  <option value="medio">Médio</option>
-                  <option value="grande">Grande</option>
-                </select>
+              <div class="image-upload">
+                <label for="imagem">Imagem</label>
+                <div class="image-placeholder">
+                  <!-- Placeholder para imagem -->
+                </div>
+                <input type="file" id="imagem" name="imagem" accept="image/*" />
               </div>
             </div>
-            <div class="image-upload">
-              <label for="imagem">Imagem</label>
-              <div class="image-placeholder">
-                <!-- Placeholder para imagem -->
-              </div>
-              <input type="file" id="imagem" name="imagem" accept="image/*">
+            <div class="form-buttons">
+              <button type="submit" class="btn search">Salvar</button>
+              <button type="reset" class="btn edit">Limpar</button>
             </div>
-          </div>
-          <div class="form-buttons">
-            <button type="submit" class="btn search">Salvar</button>
-            <button type="reset" class="btn edit">Limpar</button>
-          </div>
-      </section>
-    </main>
-  </div>
-</body>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // Função para carregar os dados do pet selecionado
+      function carregarPet() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        const pets = JSON.parse(localStorage.getItem("pets")) || [];
+        const pet = pets.find((p) => p.id == id);
+
+        if (pet) {
+          document.getElementById("proprietario").value = pet.proprietario;
+          document.getElementById("nome").value = pet.nome;
+          document.getElementById("tipo").value = pet.tipo;
+          document.getElementById("raca").value = pet.raca;
+          document.getElementById("tamanho").value = pet.tamanho;
+        } else {
+          alert("Pet não encontrado!");
+        }
+      }
+
+      // Função para salvar as alterações do pet
+      function salvarPet(event) {
+        event.preventDefault();
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        const pets = JSON.parse(localStorage.getItem("pets")) || [];
+        const petIndex = pets.findIndex((p) => p.id == id);
+
+        if (petIndex !== -1) {
+          pets[petIndex].proprietario =
+            document.getElementById("proprietario").value;
+          pets[petIndex].nome = document.getElementById("nome").value;
+          pets[petIndex].tipo = document.getElementById("tipo").value;
+          pets[petIndex].raca = document.getElementById("raca").value;
+          pets[petIndex].tamanho = document.getElementById("tamanho").value;
+
+          localStorage.setItem("pets", JSON.stringify(pets));
+          alert("Pet atualizado com sucesso!");
+          window.location.href = "pets.html";
+        } else {
+          alert("Pet não encontrado!");
+        }
+      }
+
+      document
+        .getElementById("editarPetForm")
+        .addEventListener("submit", salvarPet);
+
+      // Carregar dados do pet ao carregar a página
+      window.onload = carregarPet;
+    </script>
+  </body>
 </html>

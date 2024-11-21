@@ -83,45 +83,66 @@
             </div>
           </div>
           <div class="form-buttons">
-            <button type="submit" class="btn search">Salvar</button>
-            <button type="reset" class="btn edit">Limpar</button>
+            <button type="button" class="btn search" onclick="salvarPet()">
+              Salvar
+            </button>
+            <button type="button" class="btn edit" onclick="limparFormulario()">
+              Limpar
+            </button>
           </div>
         </section>
       </main>
     </div>
 
-    <script src="cadastrar_pet.js"></script>
     <script>
-      function gerarId() {
-        return Math.floor(3 * 2).toString(36); // Gera ID único
-      }
-
       function salvarPet() {
-        const id = gerarId();
-        const nome = document.getElementById("nome").value;
-        const tipo = document.getElementById("tipo").value;
-        const raca = document.getElementById("raca").value;
-        const tamanho = document.getElementById("tamanho").value;
+        const nome = document.getElementById("nome").value.trim();
+        const proprietario = document.getElementById("proprietario").value.trim();
+        const tipo = document.getElementById("tipo").value.trim();
+        const raca = document.getElementById("raca").value.trim();
+        const tamanho = document.getElementById("tamanho").value.trim();
 
-        const pet = { id, nome, tipo, raca, tamanho };
+        // Verifica se todos os campos obrigatórios estão preenchidos
+        if (!nome || !tipo || !raca || !tamanho || !proprietario) {
+          alert("Preencha todos os campos obrigatórios!");
+          return;
+        }
 
+        // Criar um objeto do pet
+        const pet = {
+          id: Date.now(), // Usando timestamp como ID único
+          proprietario,
+          nome,
+          tipo,
+          raca,
+          tamanho,
+        };
+
+        // Recuperar os pets do localStorage, ou inicializar um array vazio
         let pets = JSON.parse(localStorage.getItem("pets")) || [];
+
+        // Adicionar o novo pet ao array
         pets.push(pet);
+
+        // Salvar o array atualizado no localStorage
         localStorage.setItem("pets", JSON.stringify(pets));
 
-        document.getElementById("modalConfirmacao").style.display = "block";
+        // Exibir mensagem de sucesso
+        alert("Pet cadastrado com sucesso!");
+
+        // Redirecionar para a página de listagem
+        window.location.href = "pets.html";
       }
 
       function limparFormulario() {
+        document.getElementById("proprietario").value = "";
         document.getElementById("nome").value = "";
         document.getElementById("tipo").value = "cachorro";
         document.getElementById("raca").value = "";
         document.getElementById("tamanho").value = "pequeno";
-      }
 
-      function fecharModal() {
-        document.getElementById("modalConfirmacao").style.display = "none";
-        limparFormulario();
+        // Mensagem de feedback ao usuário
+        alert("Formulário limpo!");
       }
     </script>
   </body>

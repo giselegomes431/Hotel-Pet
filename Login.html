@@ -16,23 +16,43 @@
         />
       </div>
     </div>
-    <div class="container">
+
+    <!-- Div onde o conteúdo será carregado -->
+    <div class="container" id="app">
+      <!-- Página de Login (Conteúdo Inicial) -->
       <h1>Hotel Pet</h1>
-      <form action="pets.html" method="POST">
+      <form id="loginForm">
         <label for="login">Login</label>
         <input type="text" id="login" name="login" required />
 
         <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" required />
 
-        <button type="submit" href="pets.html">Entrar</button>
+        <button type="button" onclick="navigate('pets')">Entrar</button>
         <div class="links">
-          <a href="esqueci_senha.html">Esqueci a senha</a>
-          <a href="criar_conta.html">Criar uma conta</a>
+          <a href="#" onclick="navigate('esqueci_senha')">Esqueci a senha</a>
+          <a href="#" onclick="navigate('criar_conta')">Criar uma conta</a>
         </div>
       </form>
     </div>
 
-    <script src="imagens_login.js"></script>
+    <script>
+      // Função para navegação SPA
+      function navigate(page) {
+        fetch(`${page}.html`)
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById('app').innerHTML = html;
+            window.history.pushState(null, '', `#${page}`);
+          })
+          .catch((error) => console.error('Erro ao carregar a página:', error));
+      }
+
+      // Manter a navegação ao usar o botão de voltar do navegador
+      window.addEventListener('popstate', () => {
+        const page = window.location.hash.substring(1) || 'login';
+        navigate(page);
+      });
+    </script>
   </body>
 </html>

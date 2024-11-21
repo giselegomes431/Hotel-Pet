@@ -44,7 +44,9 @@
           >
             + Novo Pet
           </button>
-          <button class="btn remover">Remover</button>
+          <button class="btn remover" onclick="removerSelecionados()">
+            Remover
+          </button>
 
           <!-- Formulário de pesquisa -->
           <div class="div">
@@ -88,63 +90,65 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>1</td>
-                <td>Max</td>
-                <td>Cachorro</td>
-                <td>Pastor Alemão</td>
-                <td>Grande</td>
-                <td>
-                  <a href="editar_pet.html">Editar</a> |
-                  <a href="visualizar_pet.html">Visualizar</a>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>2</td>
-                <td>Ginger</td>
-                <td>Gato</td>
-                <td>Não definida</td>
-                <td>Pequeno</td>
-                <td>
-                  <a href="editar_pet.html">Editar</a> |
-                  <a href="visualizar_pet.html">Visualizar</a>
-                </td>
-              </tr>
+              <!-- As linhas da tabela serão preenchidas pelo JavaScript -->
             </tbody>
           </table>
         </section>
       </main>
     </div>
-    <script src="pets.js"></script>
-    <script>
-      // Seleciona o corpo da tabela onde os pets serão exibidos
-      const tabelaPets = document.querySelector(".pets-table tbody");
 
-      // Função para carregar os pets do localStorage e exibir na tabela
+    <script>
+      // Função para carregar pets do localStorage
       function carregarPets() {
         const pets = JSON.parse(localStorage.getItem("pets")) || [];
+        const tabelaPets = document.querySelector(".pets-table tbody");
 
+        // Limpar a tabela antes de preencher
+        tabelaPets.innerHTML = "";
+
+        // Preencher a tabela com os pets
         pets.forEach((pet) => {
           const linha = document.createElement("tr");
-
           linha.innerHTML = `
-          <td><input type="checkbox" /></td>
+            <td><input type="checkbox" data-id="${pet.id}" /></td>
             <td>${pet.id}</td>
             <td>${pet.nome}</td>
             <td>${pet.tipo}</td>
             <td>${pet.raca}</td>
             <td>${pet.tamanho}</td>
-            <td><a href="editar_pet.html">Editar</a> | <a href="visualizar_pet.html">Visualizar</a></td>
+            <td>
+              <a href="visualizar_pet.html?id=${pet.id}">Visualizar</a> |
+              <a href="editar_pet.html?id=${pet.id}">Editar</a>
+            </td>
           `;
-
           tabelaPets.appendChild(linha);
         });
       }
 
-      // Chama a função ao carregar a página
-      carregarPets();
+      // Função para remover pets selecionados
+      function removerSelecionados() {
+        const checkboxes = document.querySelectorAll(
+          '.pets-table tbody input[type="checkbox"]:checked'
+        );
+        const pets = JSON.parse(localStorage.getItem("pets")) || [];
+
+        // Filtrar os pets que não estão selecionados
+        const petsAtualizados = pets.filter(
+          (pet) =>
+            !Array.from(checkboxes).some(
+              (checkbox) => checkbox.dataset.id == pet.id
+            )
+        );
+
+        // Atualizar o localStorage com os pets não selecionados
+        localStorage.setItem("pets", JSON.stringify(petsAtualizados));
+
+        // Atualizar a tabela após a remoção
+        carregarPets();
+      }
+
+      // Chamar a função ao carregar a página
+      window.onload = carregarPets;
     </script>
   </body>
 </html>

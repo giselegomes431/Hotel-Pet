@@ -15,7 +15,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #52A624;
+  background-color: #52a624;
   border-radius: 8px;
 }
 
@@ -69,13 +69,13 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #CFFFC4;
+  background-color: #cfffc4;
   padding: 20px;
   border-right: 1px solid #ddd;
 }
 
 .sidebar h2 {
-  color: #2C5D12;
+  color: #2c5d12;
   margin-bottom: 20px;
 }
 
@@ -94,12 +94,12 @@ body {
 }
 
 .sidebar a:hover {
-  color: #6CE52B; /* Cor ao passar o mouse */
+  color: #6ce52b; /* Cor ao passar o mouse */
   font-weight: bold;
 }
 
 .sidebar nav ul li.active a {
-  color: #2C5D12;
+  color: #2c5d12;
   font-weight: bold;
 }
 
@@ -135,7 +135,7 @@ body {
 }
 
 .pets-section {
-  background-color: #CFFFC4;
+  background-color: #cfffc4;
   padding: 20px;
   border-radius: 8px;
 }
@@ -144,7 +144,6 @@ body {
   margin-bottom: 10px;
 }
 
-
 .form-buttons {
   display: flex;
   gap: 10px;
@@ -152,24 +151,23 @@ body {
   margin-top: 10px;
 }
 
-
 .btn.search {
-  background-color: #2C5D12;
+  background-color: #2c5d12;
   color: #fff;
-  border: 2px solid #2C5D12;
+  border: 2px solid #2c5d12;
   border-radius: 5px;
-  border-color: #2C5D12;
+  border-color: #2c5d12;
   padding: 8px 12px;
   margin-right: 10px;
 }
-  
-  .btn.search:hover {
-    background-color: #6CE52B;
-    color: #fff;
-    cursor: pointer;
-    border: 2px solid #6CE52B;
-    border-color: #6CE52B;
-  }
+
+.btn.search:hover {
+  background-color: #6ce52b;
+  color: #fff;
+  cursor: pointer;
+  border: 2px solid #6ce52b;
+  border-color: #6ce52b;
+}
 
 .pets-table {
   width: 100%;
@@ -186,10 +184,11 @@ body {
   border: 1px solid #ddd;
   text-align: left;
   font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.pets-table th
- {
+.pets-table th {
   color: #fff;
 }
 
@@ -211,7 +210,7 @@ body {
 }
 
 .div {
-  background-color: #52A624;
+  background-color: #52a624;
   margin-bottom: 5ch;
   width: 1000%;
   height: 90vh;
@@ -222,14 +221,13 @@ body {
 }
 
 .menu {
-  background-color: #2C5D12;
+  background-color: #2c5d12;
 }
-
 
 .btn.edit {
   background-color: #ffffff;
-  color: #2C5D12;
-  border: 2px solid #2C5D12;
+  color: #2c5d12;
+  border: 2px solid #2c5d12;
   border-radius: 5px;
   cursor: pointer;
   padding: 8px 12px;
@@ -238,8 +236,8 @@ body {
 
 .btn.delete {
   background-color: #ffffff;
-  color: #2C5D12;
-  border: 2px solid #2C5D12;
+  color: #2c5d12;
+  border: 2px solid #2c5d12;
   border-radius: 5px;
   cursor: pointer;
   padding: 8px 12px;
@@ -248,8 +246,8 @@ body {
 
 .btn.remover {
   background-color: #ffffff;
-  color: #2C5D12;
-  border: 2px solid #2C5D12;
+  color: #2c5d12;
+  border: 2px solid #2c5d12;
   border-radius: 5px;
   cursor: pointer;
   padding: 8px 12px;
@@ -260,13 +258,39 @@ body {
 .btn.btnfuncao:hover,
 .btn.btnstatus:hover,
 .btn.btnusuarios:hover {
-  background-color: #6CE52B;
+  background-color: #6ce52b;
   color: #fff;
 }
 
 .btn.back:hover,
 .btn.edit:hover,
 .btn.delete:hover {
-  background-color: #6CE52B;
+  background-color: #6ce52b;
   color: #fff;
+}
+
+/* Estilos para os diferentes status */
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  color: #fff; /* Cor da fonte branca */
+}
+
+.status.cancelado {
+  background-color: #ff0000; /* Vermelho */
+}
+
+.status.em-andamento {
+  background-color: #ffc107; /* Amarelo */
+}
+
+.status.finalizado {
+  background-color: #4caf50; /* Verde */
+}
+
+.status.reservado {
+  background-color: #ff9800; /* Laranja */
 }

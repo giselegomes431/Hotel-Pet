@@ -42,10 +42,10 @@
             class="btn edit"
             onclick="window.location.href='cadastrar_reserva.html'"
           >
-            + Nova Reserva
+          ➕ Nova Reserva
           </button>
           <button class="btn remover" onclick="removerSelecionados()">
-            Remover
+            🗑️ Remover
           </button>
 
           <!-- Formulário de Pesquisa -->
@@ -92,10 +92,10 @@
             </div>
             <div class="form-buttons">
               <button class="btn search" onclick="pesquisarReservas()">
-                Pesquisar
+                🔍 Pesquisar
               </button>
               <button class="btn delete" onclick="limparPesquisa()">
-                Limpar
+                🧹 Limpar
               </button>
             </div>
           </div>
@@ -153,9 +153,10 @@
       <td>${reserva.pet}</td>
       <td>${new Date(reserva.inicio).toLocaleDateString()}</td>
       <td>${new Date(reserva.termino).toLocaleDateString()}</td>
-      <td><span class="status ${reserva.status.toLowerCase()}">${
-            reserva.status
-          }</span></td>
+      <td><span class="status ${reserva.status
+        .toLowerCase()
+        .replace(" ", "-")}">${reserva.status}</span></td>
+
       <td>R$ ${reserva.total.toFixed(2)}</td>
       <td>
         <a href="editar_reserva.html?id=${reserva.id}">Editar</a> |

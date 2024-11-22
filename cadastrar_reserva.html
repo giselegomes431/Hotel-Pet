@@ -38,42 +38,96 @@
         <!-- Seção de reserva -->
         <section class="view-pet-section">
           <h2>Cadastrar reserva</h2>
-          <div class="form-grid">
-            <div class="form-fields">
-              <div class="form-group">
-                <label for="pet">Pet *</label>
-                <input type="text" id="pet" name="pet" required />
-              </div>
-
-              <div>
-                <div class="form-group small-group">
-                  <label for="inicio">Período</label>
-                  <input type="date" id="inicio" name="inicio" />
+          <form id="form-cadastrar-reserva">
+            <div class="form-grid">
+              <div class="form-fields">
+                <div class="form-group">
+                  <label for="pet">Pet *</label>
+                  <select id="pet" name="pet" required>
+                    <!-- Opções serão preenchidas pelo JavaScript -->
+                  </select>
                 </div>
-                <div class="form-group small-group">
-                  <input type="date" id="termino" name="termino" />
+
+                <div>
+                  <div class="form-group small-group">
+                    <label for="inicio">Período</label>
+                    <input type="date" id="inicio" name="inicio" />
+                  </div>
+                  <div class="form-group small-group">
+                    <input type="date" id="termino" name="termino" />
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label>Notas</label>
-                <textarea id="notas" name="notas" rows="4">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea
-                >
-              </div>
+                <div class="form-group">
+                  <label>Notas</label>
+                  <textarea id="notas" name="notas" rows="4"></textarea>
+                </div>
 
-              <div class="total-diarias">
-                Total das diárias: <span>R$ 40,00</span>
+                <div class="total-diarias">
+                  Total das diárias: <span id="total-diarias">R$ 40,00</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-buttons">
-            <button type="submit" class="btn search">Salvar</button>
-            <button type="reset" class="btn edit">Limpar</button>
-          </div>
+            <div class="form-buttons">
+              <button type="submit" class="btn search">Salvar</button>
+              <button type="reset" class="btn edit">Limpar</button>
+            </div>
+          </form>
         </section>
       </main>
     </div>
-    <script src="cadastrar_reserva.js"></script>
+    <script>
+      document.getElementById("form-cadastrar-reserva").onsubmit = function (
+        event
+      ) {
+        event.preventDefault();
+        salvarReserva();
+      };
+
+      // Função para carregar pets cadastrados e preencher o campo de seleção
+      function carregarPets() {
+        const pets = JSON.parse(localStorage.getItem("pets")) || [];
+        const petSelect = document.getElementById("pet");
+
+        pets.forEach((pet) => {
+          const option = document.createElement("option");
+          option.value = pet.nome;
+          option.text = pet.nome;
+          petSelect.appendChild(option);
+        });
+      }
+
+      function salvarReserva() {
+        const pet = document.getElementById("pet").value;
+        const inicio = document.getElementById("inicio").value;
+        const termino = document.getElementById("termino").value;
+        const notas = document.getElementById("notas").value;
+        const total = parseFloat(
+          document
+            .getElementById("total-diarias")
+            .innerText.replace("R$", "")
+            .replace(",", ".")
+        );
+
+        const novaReserva = {
+          id: Date.now().toString(),
+          pet: pet,
+          inicio: inicio,
+          termino: termino,
+          notas: notas,
+          status: "reservado",
+          total: total,
+        };
+
+        const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+        reservas.push(novaReserva);
+        localStorage.setItem("reservas", JSON.stringify(reservas));
+
+        alert("Reserva cadastrada com sucesso!");
+        window.location.href = "reservas.html";
+      }
+
+      window.onload = carregarPets;
+    </script>
   </body>
 </html>

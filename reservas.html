@@ -44,7 +44,9 @@
           >
             + Nova Reserva
           </button>
-          <button class="btn remover">Remover</button>
+          <button class="btn remover" onclick="removerSelecionados()">
+            Remover
+          </button>
 
           <!-- Formulário de Pesquisa -->
           <div class="div">
@@ -89,11 +91,14 @@
               </div>
             </div>
             <div class="form-buttons">
-              <button class="btn search">Pesquisar</button>
-              <button class="btn delete">Limpar</button>
+              <button class="btn search" onclick="pesquisarReservas()">
+                Pesquisar
+              </button>
+              <button class="btn delete" onclick="limparPesquisa()">
+                Limpar
+              </button>
             </div>
           </div>
-
           <!-- Tabela de Reservas -->
           <table class="pets-table">
             <thead>
@@ -109,51 +114,125 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>12349894501</td>
-                <td>Max</td>
-                <td>02/05/2021</td>
-                <td>07/05/2020</td>
-                <td><span class="status reservada">Reservada</span></td>
-                <td>R$ 40,00</td>
-                <td>
-                  <a href="editar_reserva.html">Editar</a> |
-                  <a href="visualizar_reserva.html">Visualizar</a>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>12349894501</td>
-                <td>Ginger</td>
-                <td>02/05/2021</td>
-                <td>07/05/2020</td>
-                <td><span class="status em-progresso">Em Progresso</span></td>
-                <td>R$ 40,00</td>
-                <td>
-                  <a href="editar_reserva.html">Editar</a> |
-                  <a href="visualizar_reserva.html">Visualizar</a>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td>12349894501</td>
-                <td>Max</td>
-                <td>02/05/2021</td>
-                <td>07/05/2020</td>
-                <td><span class="status finalizada">Finalizada</span></td>
-                <td>R$ 40,00</td>
-                <td>
-                  <a href="editar_reserva.html">Editar</a> |
-                  <a href="visualizar_reserva.html">Visualizar</a>
-                </td>
-              </tr>
+              <!-- As linhas da tabela serão preenchidas pelo JavaScript -->
             </tbody>
           </table>
         </section>
       </main>
     </div>
-    <script src="reservas.js"></script>
 
+    <script>
+      // Função para carregar reservas do localStorage
+      function carregarReservas(reservasFiltradas) {
+        const reservas =
+          reservasFiltradas ||
+          JSON.parse(localStorage.getItem("reservas")) ||
+          [];
+        const tabelaReservas = document.querySelector(".pets-table tbody");
+
+        // Limpar a tabela antes de preencher
+        tabelaReservas.innerHTML = "";
+
+        // Preencher a tabela com as reservas
+        reservas.forEach((reserva) => {
+          const linha = document.createElement("tr");
+          linha.innerHTML = `
+            <td><input type="checkbox" data-id="${reserva.id}" /></td>
+            <td>${reserva.id}</td>
+            <td>${reserva.pet}</td>
+            <td>${new Date(reserva.inicio).toLocaleDateString()}</td>
+            <td>${new Date(reserva.termino).toLocaleDateString()}</td>
+            <td><span class="status ${reserva.status.toLowerCase()}">${
+            reserva.status
+          }</span></td>
+            <td>R$ ${reserva.total.toFixed(2)}</td>
+            <td>
+              <a href="editar_reserva.html?id=${reserva.id}">Editar</a> |
+              <a href="visualizar_reserva.html?id=${reserva.id}">Visualizar</a>
+            </td>
+          `;
+          tabelaReservas.appendChild(linha);
+        });
+      }
+
+      // Função para remover reservas selecionadas
+      function removerSelecionados() {
+        const checkboxes = document.querySelectorAll(
+          '.pets-table tbody input[type="checkbox"]:checked'
+        );
+        const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+        // Filtrar as reservas que não estão selecionadas
+        const reservasAtualizadas = reservas.filter(
+          (reserva) =>
+            !Array.from(checkboxes).some(
+              (checkbox) => checkbox.dataset.id == reserva.id
+            )
+        );
+
+        // Atualizar o localStorage com as reservas não selecionadas
+        localStorage.setItem("reservas", JSON.stringify(reservasAtualizadas));
+
+        // Atualizar a tabela após a remoção
+        carregarReservas();
+      }
+
+      // Função para pesquisar reservas
+      function pesquisarReservas() {
+        const id = document.getElementById("id").value.toLowerCase();
+        const proprietario = document
+          .getElementById("proprietario")
+          .value.toLowerCase();
+        const status = document.getElementById("status").value.toLowerCase();
+        const inicio = document.getElementById("inicio").value;
+        const termino = document.getElementById("termino").value;
+        const total = parseFloat(
+          document
+            .getElementById("total")
+            .value.replace("R$", "")
+            .replace(",", ".")
+        );
+        const pet = document.getElementById("pet").value.toLowerCase();
+
+        const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+        const reservasFiltradas = reservas.filter((reserva) => {
+          return (
+            (id ? reserva.id.toLowerCase().includes(id) : true) &&
+            (proprietario
+              ? reserva.proprietario.toLowerCase().includes(proprietario)
+              : true) &&
+            (status ? reserva.status.toLowerCase() === status : true) &&
+            (inicio
+              ? new Date(reserva.inicio).toLocaleDateString() ===
+                new Date(inicio).toLocaleDateString()
+              : true) &&
+            (termino
+              ? new Date(reserva.termino).toLocaleDateString() ===
+                new Date(termino).toLocaleDateString()
+              : true) &&
+            (!isNaN(total) ? reserva.total === total : true) &&
+            (pet ? reserva.pet.toLowerCase().includes(pet) : true)
+          );
+        });
+
+        carregarReservas(reservasFiltradas);
+      }
+
+      // Função para limpar campos de pesquisa
+      function limparPesquisa() {
+        document.getElementById("id").value = "";
+        document.getElementById("proprietario").value = "";
+        document.getElementById("status").value = "";
+        document.getElementById("inicio").value = "";
+        document.getElementById("termino").value = "";
+        document.getElementById("total").value = "R$ 0,00";
+        document.getElementById("pet").value = "";
+        carregarReservas();
+      }
+
+      // Chamar a função ao carregar a página
+      window.onload = carregarReservas;
+    </script>
   </body>
 </html>

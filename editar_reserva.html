@@ -40,51 +40,121 @@
         <!-- Seção de reserva -->
         <section class="view-pet-section">
           <h2>Editar reserva</h2>
-          <div class="form-grid">
-            <div class="form-fields">
-              <div class="form-group">
-                <label for="pet">Pet: *</label>
-                <input type="text" id="pet" name="pet" required />
-              </div>
-
-              <div>
-                <div class="form-group small-group">
-                  <label for="inicio">Período:</label>
-                  <input type="date" id="inicio" name="inicio" />
+          <form id="form-editar-reserva">
+            <div class="form-grid">
+              <div class="form-fields">
+                <div class="form-group">
+                  <label for="pet">Pet: *</label>
+                  <input type="text" id="pet" name="pet" required />
                 </div>
-                <div class="form-group small-group">
-                  <input type="date" id="termino" name="termino" />
+
+                <div>
+                  <div class="form-group small-group">
+                    <label for="inicio">Período:</label>
+                    <input type="date" id="inicio" name="inicio" />
+                  </div>
+                  <div class="form-group small-group">
+                    <input type="date" id="termino" name="termino" />
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label>Notas:</label>
-                <textarea id="notas" name="notas" rows="4">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea
-                >
-              </div>
-              <div class="form-group">
-                <label for="status">Status:</label>
-                <select id="status" name="status">
-                  <option value="">Selecione</option>
-                  <option value="reservado">Reservado</option>
-                  <option value="em_progresso">Em andamento</option>
-                  <option value="cancelado">Cancelado</option>
-                  <option value="finalizado">Finalizado</option>
-                </select>
-              </div>
+                <div class="form-group">
+                  <label>Notas:</label>
+                  <textarea id="notas" name="notas" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="status">Status:</label>
+                  <select id="status" name="status">
+                    <option value="">Selecione</option>
+                    <option value="reservado">Reservado</option>
+                    <option value="em_progresso">Em andamento</option>
+                    <option value="cancelado">Cancelado</option>
+                    <option value="finalizado">Finalizado</option>
+                  </select>
+                </div>
 
-              <div class="total-diarias">
-                Total das diárias: <span>R$ 40,00</span>
+                <div class="total-diarias">
+                  Total das diárias: <span id="total-diarias">R$ 0,00</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-buttons">
-            <button type="submit" class="btn search">Salvar</button>
-            <button type="reset" class="btn edit">Limpar</button>
-          </div>
+            <div class="form-buttons">
+              <button type="submit" class="btn search">Salvar</button>
+              <button type="reset" class="btn edit">Limpar</button>
+            </div>
+          </form>
         </section>
       </main>
     </div>
+
+    <script>
+      // Função para carregar detalhes da reserva a partir dos parâmetros da URL
+      function carregarDetalhesReserva() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        // Recuperar as reservas do `localStorage`
+        const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
+        // Encontrar a reserva correspondente ao id
+        const reserva = reservas.find((r) => r.id == id);
+
+        // Verificar se a reserva foi encontrada
+        if (reserva) {
+          document.getElementById("pet").value = reserva.pet;
+          document.getElementById("inicio").value = reserva.inicio;
+          document.getElementById("termino").value = reserva.termino;
+          document.getElementById("notas").value = reserva.notas;
+          document.getElementById("status").value = reserva.status;
+          document.getElementById(
+            "total-diarias"
+          ).innerText = `R$ ${reserva.total.toFixed(2)}`;
+
+          document.getElementById("form-editar-reserva").onsubmit = function (
+            event
+          ) {
+            event.preventDefault();
+            salvarReserva(reserva.id);
+          };
+        } else {
+          alert("Reserva não encontrada!");
+        }
+      }
+
+      // Função para salvar a reserva editada
+      function salvarReserva(id) {
+        const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+        const reservaIndex = reservas.findIndex((r) => r.id == id);
+
+        if (reservaIndex !== -1) {
+          const reserva = reservas[reservaIndex];
+          reserva.pet = document.getElementById("pet").value;
+          reserva.inicio = document.getElementById("inicio").value;
+          reserva.termino = document.getElementById("termino").value;
+          reserva.notas = document.getElementById("notas").value;
+          reserva.status = document.getElementById("status").value;
+          reserva.total = parseFloat(
+            document
+              .getElementById("total-diarias")
+              .innerText.replace("R$", "")
+              .replace(",", ".")
+          );
+
+          reservas[reservaIndex] = reserva;
+          salvarReservasNoLocalStorage(reservas);
+        } else {
+          alert("Reserva não encontrada!");
+        }
+      }
+
+      // Função para salvar as reservas no localStorage e redirecionar
+      function salvarReservasNoLocalStorage(reservas) {
+        localStorage.setItem("reservas", JSON.stringify(reservas));
+        alert("Reserva atualizada com sucesso!");
+        window.location.href = "reservas.html";
+      }
+
+      window.onload = carregarDetalhesReserva;
+    </script>
   </body>
 </html>

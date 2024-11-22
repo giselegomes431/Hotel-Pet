@@ -67,12 +67,11 @@
                   <select id="status" name="status">
                     <option value="">Selecione</option>
                     <option value="reservado">Reservado</option>
-                    <option value="em_progresso">Em andamento</option>
+                    <option value="em andamento">Em andamento</option>
                     <option value="cancelado">Cancelado</option>
                     <option value="finalizado">Finalizado</option>
                   </select>
                 </div>
-
                 <div class="total-diarias">
                   Total das diárias: <span id="total-diarias">R$ 0,00</span>
                 </div>
@@ -88,19 +87,23 @@
     </div>
 
     <script>
-      // Função para carregar detalhes da reserva a partir dos parâmetros da URL
       function carregarDetalhesReserva() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get("id");
 
-        // Recuperar as reservas do `localStorage`
         const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
 
-        // Encontrar a reserva correspondente ao id
         const reserva = reservas.find((r) => r.id == id);
 
-        // Verificar se a reserva foi encontrada
         if (reserva) {
+          if (reserva.status === "em andamento") {
+            window.location.href = `editar_reservaEmAndamento.html?id=${id}`;
+            return;
+          } else if (reserva.status === "finalizado") {
+            window.location.href = `editar_reservaFinalizada.html?id=${id}`;
+            return;
+          }
+
           document.getElementById("pet").value = reserva.pet;
           document.getElementById("inicio").value = reserva.inicio;
           document.getElementById("termino").value = reserva.termino;
@@ -121,7 +124,6 @@
         }
       }
 
-      // Função para salvar a reserva editada
       function salvarReserva(id) {
         const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
         const reservaIndex = reservas.findIndex((r) => r.id == id);
@@ -133,12 +135,17 @@
           reserva.termino = document.getElementById("termino").value;
           reserva.notas = document.getElementById("notas").value;
           reserva.status = document.getElementById("status").value;
-          reserva.total = parseFloat(
-            document
-              .getElementById("total-diarias")
-              .innerText.replace("R$", "")
-              .replace(",", ".")
-          );
+
+          const inicio = new Date(reserva.inicio);
+          const termino = new Date(reserva.termino);
+          const diffTime = Math.abs(termino - inicio);
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+          const configuracoes =
+            JSON.parse(localStorage.getItem("configuracoes")) || {};
+          const diaria = configuracoes.diaria || 40; // Valor padrão caso não haja configuração
+
+          reserva.total = diaria * diffDays;
 
           reservas[reservaIndex] = reserva;
           salvarReservasNoLocalStorage(reservas);
@@ -147,12 +154,37 @@
         }
       }
 
-      // Função para salvar as reservas no localStorage e redirecionar
       function salvarReservasNoLocalStorage(reservas) {
         localStorage.setItem("reservas", JSON.stringify(reservas));
         alert("Reserva atualizada com sucesso!");
         window.location.href = "reservas.html";
       }
+
+      function calcularTotalDiarias() {
+        const inicio = new Date(document.getElementById("inicio").value);
+        const termino = new Date(document.getElementById("termino").value);
+
+        if (inicio && termino && inicio <= termino) {
+          const diffTime = Math.abs(termino - inicio);
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+          const configuracoes =
+            JSON.parse(localStorage.getItem("configuracoes")) || {};
+          const diaria = configuracoes.diaria || 40; // Valor padrão caso não haja configuração
+
+          const total = diaria * diffDays;
+          document.getElementById(
+            "total-diarias"
+          ).innerText = `R$ ${total.toFixed(2)}`;
+        }
+      }
+
+      document
+        .getElementById("inicio")
+        .addEventListener("change", calcularTotalDiarias);
+      document
+        .getElementById("termino")
+        .addEventListener("change", calcularTotalDiarias);
 
       window.onload = carregarDetalhesReserva;
     </script>

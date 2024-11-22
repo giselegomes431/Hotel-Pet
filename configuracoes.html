@@ -8,7 +8,6 @@
   </head>
   <body>
     <div class="container">
-      <!-- Menu lateral -->
       <aside class="sidebar">
         <h2>Hotel Pet</h2>
         <nav>
@@ -20,10 +19,7 @@
           </ul>
         </nav>
       </aside>
-
-      <!-- Conteúdo principal -->
       <main class="main-content">
-        <!-- Cabeçalho -->
         <header class="header">
           <div class="breadcrumb">Home / Configurações</div>
           <div class="user-info">
@@ -34,28 +30,64 @@
             />
           </div>
         </header>
-
-        <!-- Seção de edição do pet -->
         <section class="view-pet-section">
           <h2>Configurações</h2>
-          <div class="form-grid">
-            <div class="form-fields">
-              <div class="form-group">
-                <label for="diaria">Valor da diária: </label>
-                <input type="text" id="diaria" name="diaria" required />
-              </div>
-              <div class="form-group">
-                <label for="vagas">Vagas disponíveis: *</label>
-                <input type="text" id="vagas" name="vagas" required />
+          <form id="form-configuracoes">
+            <div class="form-grid">
+              <div class="form-fields">
+                <div class="form-group">
+                  <label for="diaria">Valor da diária: </label>
+                  <input type="text" id="diaria" name="diaria" required />
+                </div>
+                <div class="form-group">
+                  <label for="vagas">Vagas disponíveis: *</label>
+                  <input type="text" id="vagas" name="vagas" required />
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-buttons">
-            <button type="submit" class="btn search">Salvar</button>
-            <button type="reset" class="btn edit">Limpar</button>
-          </div>
+            <div class="form-buttons">
+              <button type="submit" class="btn search">Salvar</button>
+              <button type="reset" class="btn edit">Limpar</button>
+            </div>
+          </form>
         </section>
       </main>
     </div>
+    <script>
+      document.getElementById("form-configuracoes").onsubmit = function (
+        event
+      ) {
+        event.preventDefault();
+        salvarConfiguracoes();
+      };
+
+      function salvarConfiguracoes() {
+        const diaria = document.getElementById("diaria").value;
+        const vagas = document.getElementById("vagas").value;
+
+        const configuracoes = {
+          diaria: parseFloat(diaria.replace("R$", "").replace(",", ".")),
+          vagas: parseInt(vagas, 10),
+        };
+
+        localStorage.setItem("configuracoes", JSON.stringify(configuracoes));
+        alert("Configurações salvas com sucesso!");
+      }
+
+      function carregarConfiguracoes() {
+        const configuracoes =
+          JSON.parse(localStorage.getItem("configuracoes")) || {};
+        if (configuracoes.diaria) {
+          document.getElementById(
+            "diaria"
+          ).value = `R$ ${configuracoes.diaria.toFixed(2)}`;
+        }
+        if (configuracoes.vagas) {
+          document.getElementById("vagas").value = configuracoes.vagas;
+        }
+      }
+
+      window.onload = carregarConfiguracoes;
+    </script>
   </body>
 </html>

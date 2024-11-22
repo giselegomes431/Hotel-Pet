@@ -8,7 +8,6 @@
   </head>
   <body>
     <div class="container">
-      <!-- Menu lateral -->
       <aside class="sidebar">
         <h2>Hotel Pet</h2>
         <nav>
@@ -20,10 +19,7 @@
           </ul>
         </nav>
       </aside>
-
-      <!-- Conteúdo principal -->
       <main class="main-content">
-        <!-- Cabeçalho -->
         <header class="header">
           <div class="breadcrumb">Home / Reservas / Cadastrar reserva</div>
           <div class="user-info">
@@ -34,8 +30,6 @@
             />
           </div>
         </header>
-
-        <!-- Seção de reserva -->
         <section class="view-pet-section">
           <h2>Cadastrar reserva</h2>
           <form id="form-cadastrar-reserva">
@@ -47,7 +41,6 @@
                     <!-- Opções serão preenchidas pelo JavaScript -->
                   </select>
                 </div>
-
                 <div>
                   <div class="form-group small-group">
                     <label for="inicio">Período</label>
@@ -57,14 +50,12 @@
                     <input type="date" id="termino" name="termino" />
                   </div>
                 </div>
-
                 <div class="form-group">
                   <label>Notas</label>
                   <textarea id="notas" name="notas" rows="4"></textarea>
                 </div>
-
                 <div class="total-diarias">
-                  Total das diárias: <span id="total-diarias">R$ 40,00</span>
+                  Total das diárias: <span id="total-diarias">R$</span>
                 </div>
               </div>
             </div>
@@ -84,7 +75,6 @@
         salvarReserva();
       };
 
-      // Função para carregar pets cadastrados e preencher o campo de seleção
       function carregarPets() {
         const pets = JSON.parse(localStorage.getItem("pets")) || [];
         const petSelect = document.getElementById("pet");
@@ -98,6 +88,21 @@
       }
 
       function salvarReserva() {
+        const configuracoes =
+          JSON.parse(localStorage.getItem("configuracoes")) || {};
+        const vagas = configuracoes.vagas || 0;
+
+        const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+        const reservasAtivas = reservas.filter(
+          (reserva) =>
+            reserva.status === "reservado" || reserva.status === "em andamento"
+        ).length;
+
+        if (reservasAtivas >= vagas) {
+          alert("Não há vagas disponíveis.");
+          return;
+        }
+
         const pet = document.getElementById("pet").value;
         const inicio = document.getElementById("inicio").value;
         const termino = document.getElementById("termino").value;
@@ -119,13 +124,38 @@
           total: total,
         };
 
-        const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
         reservas.push(novaReserva);
         localStorage.setItem("reservas", JSON.stringify(reservas));
 
         alert("Reserva cadastrada com sucesso!");
         window.location.href = "reservas.html";
       }
+
+      function calcularTotalDiarias() {
+        const inicio = new Date(document.getElementById("inicio").value);
+        const termino = new Date(document.getElementById("termino").value);
+
+        if (inicio && termino && inicio <= termino) {
+          const diffTime = Math.abs(termino - inicio);
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+          const configuracoes =
+            JSON.parse(localStorage.getItem("configuracoes")) || {};
+          const diaria = configuracoes.diaria || 40; // Valor padrão caso não haja configuração
+
+          const total = diaria * diffDays;
+          document.getElementById(
+            "total-diarias"
+          ).innerText = `R$ ${total.toFixed(2)}`;
+        }
+      }
+
+      document
+        .getElementById("inicio")
+        .addEventListener("change", calcularTotalDiarias);
+      document
+        .getElementById("termino")
+        .addEventListener("change", calcularTotalDiarias);
 
       window.onload = carregarPets;
     </script>

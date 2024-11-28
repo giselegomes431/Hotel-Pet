@@ -80,11 +80,17 @@
             <p><strong>Id:</strong> ${reserva.id}</p>
             <p><strong>Proprietário:</strong> ${proprietario}</p>
             <p><strong>Pet:</strong> ${reserva.pet}</p>
-            <p><strong>Chegada:</strong> ${new Date(reserva.inicio).toLocaleDateString()}</p>
-            <p><strong>Partida:</strong> ${new Date(reserva.termino).toLocaleDateString()}</p>
+            <p><strong>Chegada:</strong> ${new Date(
+              reserva.inicio
+            ).toLocaleDateString()}</p>
+            <p><strong>Partida:</strong> ${new Date(
+              reserva.termino
+            ).toLocaleDateString()}</p>
             <p><strong>Notas:</strong> ${reserva.notas}</p>
             <p><strong>Status:</strong> ${reserva.status}</p>
-            <p><strong>Total das diárias:</strong> R$ ${reserva.total.toFixed(2)}</p>
+            <p><strong>Total das diárias:</strong> R$ ${reserva.total.toFixed(
+              2
+            )}</p>
           `;
 
           document.getElementById("editarReserva").onclick = function () {

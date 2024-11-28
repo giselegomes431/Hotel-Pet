@@ -17,6 +17,7 @@ body {
   padding: 20px;
   background-color: #52a624;
   border-radius: 8px;
+  flex-wrap: wrap;
 }
 
 .form-grid {
@@ -31,21 +32,20 @@ body {
   display: block;
   font-size: 14px;
   margin-bottom: 5px;
-  margin-left: 4ch;
   color: #ffff;
 }
 
 .form-group input {
-  width: 90%;
+  width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-  margin-left: 4ch;
 }
 
 .container {
   display: flex;
+  flex-wrap: wrap;
   height: 100vh;
 }
 
@@ -76,7 +76,7 @@ body {
 }
 
 .sidebar a:hover {
-  color: #6ce52b; /* Cor ao passar o mouse */
+  color: #6ce52b;
   font-weight: bold;
 }
 
@@ -94,6 +94,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding-bottom: 15px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 20px;
@@ -138,9 +139,9 @@ body {
 
 .form-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  margin-left: 107ch;
-  margin-top: 10px;
+  margin-left: 10ch;
 }
 
 .btn.search {
@@ -148,17 +149,13 @@ body {
   color: #fff;
   border: 2px solid #2c5d12;
   border-radius: 5px;
-  border-color: #2c5d12;
   padding: 8px 12px;
-  margin-right: 10px;
 }
 
 .btn.search:hover {
   background-color: #6ce52b;
   color: #fff;
   cursor: pointer;
-  border: 2px solid #6ce52b;
-  border-color: #6ce52b;
 }
 
 .pets-table {
@@ -170,26 +167,8 @@ body {
   background-color: #f0f0f0;
 }
 
-.pets-table th,
-.pets-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
-  font-size: 14px;
-  text-align: center;
-  vertical-align: middle;
-}
-
 .pets-table th {
   color: #fff;
-}
-
-.pets-table th input[type="checkbox"] {
-  margin: 0;
-}
-
-.pets-table tbody tr:hover {
-  background-color: #e9f1ff;
 }
 
 .pets-table a {
@@ -197,16 +176,25 @@ body {
   text-decoration: none;
 }
 
-.pets-table a:hover {
-  text-decoration: underline;
+.pets-table th,
+.pets-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.pets-table tbody tr:hover {
+  background-color: #e9f1ff;
 }
 
 .div {
   background-color: #52a624;
   margin-bottom: 5ch;
-  width: 1000%;
-  height: 90vh;
+  width: 100%;
   max-width: 1195px;
+  height: 90vh;
   max-height: 350px;
   border-radius: 8px;
   margin-top: 3ch;
@@ -216,47 +204,73 @@ body {
   background-color: #2c5d12;
 }
 
-.btn.edit {
-  background-color: #ffffff;
-  color: #2c5d12;
-  border: 2px solid #2c5d12;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 8px 12px;
-  margin-right: 10px;
-}
-
-.btn.delete {
-  background-color: #ffffff;
-  color: #2c5d12;
-  border: 2px solid #2c5d12;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 8px 12px;
-  margin-right: 10px;
-}
-
+.btn.edit,
+.btn.delete,
 .btn.remover {
   background-color: #ffffff;
   color: #2c5d12;
   border: 2px solid #2c5d12;
   border-radius: 5px;
-  cursor: pointer;
   padding: 8px 12px;
-  margin-right: 10px;
+  cursor: pointer;
 }
 
-.btn.remover:hover,
-.btn.btnfuncao:hover,
-.btn.btnstatus:hover,
-.btn.btnusuarios:hover {
+.btn:hover {
   background-color: #6ce52b;
   color: #fff;
 }
 
-.btn.back:hover,
-.btn.edit:hover,
-.btn.delete:hover {
-  background-color: #6ce52b;
-  color: #fff;
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pets-table {
+    margin-top: 20%;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-buttons {
+    justify-content: center;
+    margin-top: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar h2 {
+    font-size: 18px;
+  }
+
+  .sidebar nav ul li a {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .pets-table th,
+  .pets-table td {
+    font-size: 12px;
+  }
 }

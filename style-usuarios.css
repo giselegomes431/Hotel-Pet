@@ -85,7 +85,7 @@ body {
 }
 
 .sidebar a:hover {
-  color: #6ce52b; /* Cor ao passar o mouse */
+  color: #6ce52b;
   font-weight: bold;
 }
 
@@ -175,8 +175,8 @@ body {
   border: 1px solid #ddd;
   text-align: left;
   font-size: 14px;
-  text-align: center; /* Centraliza horizontalmente */
-  vertical-align: middle; /* Centraliza verticalmente */
+  text-align: center;
+  vertical-align: middle;
 }
 
 .pets-table th {
@@ -301,18 +301,16 @@ body {
   margin-top: 3ch;
 }
 
-/* Estilo básico da tabela de usuários */
 .pets-table th,
 .pets-table td {
-  text-align: center; /* Centraliza horizontalmente */
-  vertical-align: middle; /* Centraliza verticalmente */
+  text-align: center;
+  vertical-align: middle;
   padding: 10px;
 }
 
-/* Estilo para os status */
 .status.ativo {
   color: #ffffff;
-  background-color: #28a745; /* Verde */
+  background-color: #28a745;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
@@ -321,9 +319,96 @@ body {
 
 .status.inativo {
   color: #ffffff;
-  background-color: #dc3545; /* Vermelho */
+  background-color: #dc3545;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
   display: inline-block;
+}
+
+@media (max-width: 1024px) {
+  .form-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-buttons {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  .pets-table {
+    font-size: 12px;
+    margin-top: 40%;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .div {
+    max-width: 100%;
+    height: auto;
+    margin-top: 2ch;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar h2 {
+    font-size: 18px;
+  }
+
+  .sidebar nav ul li a {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .pets-table th,
+  .pets-table td {
+    font-size: 12px;
+  }
 }

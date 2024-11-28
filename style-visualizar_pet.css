@@ -17,13 +17,13 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #CFFFC4;
+  background-color: #cfffc4;
   padding: 20px;
   border-right: 1px solid #ddd;
 }
 
 .sidebar h2 {
-  color: #2C5D12;
+  color: #2c5d12;
   margin-bottom: 20px;
 }
 
@@ -42,12 +42,12 @@ body {
 }
 
 .sidebar a:hover {
-  color: #6CE52B; /* Cor ao passar o mouse */
+  color: #6ce52b;
   font-weight: bold;
 }
 
 .sidebar nav ul li.active a {
-  color: #2C5D12;
+  color: #2c5d12;
   font-weight: bold;
 }
 
@@ -83,7 +83,7 @@ body {
 }
 
 .view-pet-section {
-  background-color: #CFFFC4;
+  background-color: #cfffc4;
   padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
@@ -105,8 +105,8 @@ body {
 
 .btn.edit {
   background-color: #ffffff;
-  color: #2C5D12;
-  border: 2px solid #2C5D12;
+  color: #2c5d12;
+  border: 2px solid #2c5d12;
   border-radius: 5px;
   cursor: pointer;
   padding: 8px 12px;
@@ -125,8 +125,8 @@ body {
 
 .btn.back {
   background-color: #ffffff;
-  color: #2C5D12;
-  border: 2px solid #2C5D12;
+  color: #2c5d12;
+  border: 2px solid #2c5d12;
   border-radius: 5px;
   cursor: pointer;
   padding: 10px 15px;
@@ -137,7 +137,7 @@ body {
 .btn.back:hover,
 .btn.edit:hover,
 .btn.delete:hover {
-  background-color: #6CE52B;
+  background-color: #6ce52b;
   color: #fff;
 }
 
@@ -147,7 +147,7 @@ body {
 
 .pet-details {
   font-size: 16px;
-  color: #2C5D12;
+  color: #2c5d12;
 }
 
 .pet-details p {
@@ -175,3 +175,45 @@ body {
   color: #07ca8e;
 }
 
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    padding: 10px;
+  }
+
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .btn {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .image-placeholder {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .image-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+}

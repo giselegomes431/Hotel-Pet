@@ -42,7 +42,7 @@
             class="btn edit"
             onclick="window.location.href='cadastrar_usuario.html'"
           >
-          ➕ Novo
+            ➕ Novo
           </button>
           <button class="btn remover" onclick="removerUsuariosSelecionados()">
             🗑️ Remover
@@ -132,8 +132,6 @@
     </div>
 
     <script>
-      // Função para carregar usuários do localStorage
-      // Função para alternar o status dos usuários selecionados
       function mudarStatus() {
         const checkboxes = document.querySelectorAll(
           '.pets-table tbody input[type="checkbox"]:checked'
